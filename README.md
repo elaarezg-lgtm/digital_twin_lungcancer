@@ -1,5 +1,3 @@
-# digital_twin_lungcancer
-AI-powered lung cancer digital twin for EGFR-mutated NSCLC, combining TCGA clinical, molecular and histopathology data to simulate treatment response, resistance risk and 12-month patient evolution with a Tunisia-aware decision support layer.
 # EGFR Lung Cancer Digital Twin
 
 Prototype PFE de **jumeau numérique pour le cancer du poumon EGFR-muté**, combinant données cliniques, moléculaires, histopathologiques et contexte tunisien afin de simuler l’évolution tumorale et de classer des options thérapeutiques.
