@@ -14,8 +14,11 @@ import seaborn as sns
 
 
 # In[9]:
-
-df = pd.read_csv("data/data_mutations-all-cases.csv")
+df = pd.read_csv(
+    "data/data_mutations-all-cases.csv",
+    sep="\t",
+    comment="#"
+)
 
 df.head()
 
