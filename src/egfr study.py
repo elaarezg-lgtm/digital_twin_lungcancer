@@ -4,8 +4,6 @@
 # In[7]:
 
 
-get_ipython().system('pip install pandas matplotlib seaborn openpyxl requests')
-
 
 # In[8]:
 
@@ -17,8 +15,7 @@ import seaborn as sns
 
 # In[9]:
 
-
-df = pd.read_csv("mutations.csv")
+df = pd.read_csv("data/data_mutations-all-cases.csv")
 
 df.head()
 
