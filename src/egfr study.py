@@ -1,157 +1,55 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[7]:
-
-
-
-# In[8]:
-
-
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+from pathlib import Path
 
+BASE_DIR = Path(__file__).resolve().parents[1]
+DATA_PATH = BASE_DIR / "data" / "data_mutations-all-cases.csv"
 
-# In[9]:
 df = pd.read_csv(
-    "data/data_mutations-all-cases.csv",
+    DATA_PATH,
     sep="\t",
     comment="#"
 )
 
-df.head()
+print("Dataset loaded successfully")
+print("Shape:", df.shape)
+print("Columns:", df.columns.tolist()[:10])
 
+egfr_df = df[df["Hugo_Symbol"] == "EGFR"].copy()
 
-# In[10]:
+print("EGFR mutations:", egfr_df.shape[0])
+print(egfr_df.head())
 
+mutation_counts = egfr_df["HGVSp_Short"].value_counts()
 
-import os
-os.getcwd()
+print("\nTop EGFR mutations:")
+print(mutation_counts.head(10))
 
+top10 = mutation_counts.head(10)
 
-# In[11]:
-
-
-os.listdir()
-
-
-# In[12]:
-
-
-df = pd.read_csv("mutations.csv")
-
-df.head()
-
-
-# In[13]:
-
-
-egfr_df = df[df["hugoGeneSymbol"] == "EGFR"]
-
-egfr_df.head()
-
-
-# In[14]:
-
-
-mutation_counts = egfr_df["proteinChange"].value_counts()
-
-mutation_counts.head(10)
-
-
-# In[15]:
-
-
-import pandas as pd
-
-df = pd.read_csv("mutations.csv", sep=";")
-
-df.head()
-
-
-# In[16]:
-
-
-df.columns
-
-
-# In[17]:
-
-
-mutation_counts = df["proteinChange"].value_counts()
-
-mutation_counts.head(10)
-
-
-# In[18]:
-
-
-import matplotlib.pyplot as plt
-
-mutation_counts.head(10).plot(kind="bar")
-
-plt.title("Top EGFR Mutations")
-plt.xlabel("Mutation")
-plt.ylabel("Frequency")
-
-plt.show()
-
-
-# In[19]:
-
-
-top_mutations = mutation_counts.head(10)
-
-top_mutations
-
-
-# In[20]:
-
-
-df["isHotspot"].value_counts()
-
-
-# In[21]:
-
-
-hotspots = df[df["isHotspot"] == True]
-
-hotspots["proteinChange"].value_counts().head(10)
-
-
-# In[22]:
-
-
-import matplotlib.pyplot as plt
-
-plt.hist(df["proteinPosStart"], bins=50)
-
-plt.title("Distribution of EGFR mutation positions")
-plt.xlabel("Protein position")
-plt.ylabel("Mutation count")
-
-plt.show()
-
-
-# In[23]:
-
-
-import seaborn as sns
-
-top10 = df["proteinChange"].value_counts().head(10)
-
+plt.figure(figsize=(10, 6))
 sns.barplot(x=top10.values, y=top10.index)
-
 plt.title("Top EGFR Mutations in Dataset")
 plt.xlabel("Frequency")
 plt.ylabel("Mutation")
-
+plt.tight_layout()
 plt.show()
 
+if "Protein_position" in egfr_df.columns:
+    positions = pd.to_numeric(egfr_df["Protein_position"], errors="coerce").dropna()
 
-# In[ ]:
+    plt.figure(figsize=(10, 6))
+    plt.hist(positions, bins=50)
+    plt.title("Distribution of EGFR mutation positions")
+    plt.xlabel("Protein position")
+    plt.ylabel("Mutation count")
+    plt.tight_layout()
+    plt.show()
 
-
-
-
+if "Hotspot" in egfr_df.columns:
+    print("\nHotspot counts:")
+    print(egfr_df["Hotspot"].value_counts())
