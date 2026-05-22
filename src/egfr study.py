@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+from pathlib import Path
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 DATA_PATH = BASE_DIR / "data" / "data_mutations-all-cases.csv"
