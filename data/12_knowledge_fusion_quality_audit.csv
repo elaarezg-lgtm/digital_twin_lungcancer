@@ -1,0 +1,8 @@
+check,value,status,notes
+EGFR patients loaded,75,PASS,Patient-level EGFR-mutant cohort from Notebook 10.
+Evidence KB rows,19,PASS,Manual/CIViC-style precision oncology evidence table.
+Patient evidence matches,230,PASS,"If low, evidence table needs more alteration/drug rows."
+Dashboard global JSON patients,75,PASS,Global dashboard JSON generated.
+Clinical safety label,"Research prototype under development evidence-grounded oncology decision-support system after rigorous clinical, biological, statistical, and external validation. Current outputs must not be used as standalone medical decisions.",PASS,Research-only label must be displayed in report/dashboard.
+Pathway proxy label,Current pathway values are mutation-derived pathway proxies unless true CPTAC proteomics/phosphoproteomics values are explicitly integrated and validated. These proxy values are useful for interpretation and visualization but must not be presented as experimentally measured pathway activity.,PASS,"Current pathway values are proxy, not true phosphoproteomics."
+DGIdb status,True,PASS,DGIdb query completed.

@@ -1,0 +1,76 @@
+patient_id,egfr,best_drug,error_count,errors,status
+CPTAC__luad_cptac_2020__C3L-00093,EGFR L858R; Other EGFR alteration EGFR L858R; Other EGFR alteration p.A871G; p.L858R p.A871G; p.L858R,Osimertinib,0,,PASS
+CPTAC__luad_cptac_2020__C3L-00368,EGFR G719X; EGFR S768I EGFR G719X; EGFR S768I p.G719A; p.S768I p.G719A; p.S768I,Afatinib,0,,PASS
+CPTAC__luad_cptac_2020__C3L-00510,EGFR L858R; Other EGFR alteration EGFR L858R; Other EGFR alteration p.L62R; p.L858R p.L62R; p.L858R,Osimertinib,0,,PASS
+CPTAC__luad_cptac_2020__C3L-00604,EGFR exon 19 deletion EGFR exon 19 deletion p.E746_A750del p.E746_A750del,Osimertinib,1,resistance:bypass_present_but_resistance_risk_low,REVIEW
+CPTAC__luad_cptac_2020__C3L-00893,EGFR exon 19 deletion EGFR exon 19 deletion p.E746_A750del p.E746_A750del,Osimertinib,0,,PASS
+CPTAC__luad_cptac_2020__C3L-00913,Other EGFR alteration Other EGFR alteration p.L777L p.L777L,Platinum-based Chemotherapy,1,resistance:bypass_present_but_resistance_risk_low,REVIEW
+CPTAC__luad_cptac_2020__C3L-01330,EGFR L858R EGFR L858R p.L858R p.L858R,Osimertinib,0,,PASS
+CPTAC__luad_cptac_2020__C3L-02219,EGFR L858R EGFR L858R p.L858R p.L858R,Osimertinib,0,,PASS
+CPTAC__luad_cptac_2020__C3N-00167,EGFR exon 19 deletion EGFR exon 19 deletion p.E746_A750del p.E746_A750del,Osimertinib,0,,PASS
+CPTAC__luad_cptac_2020__C3N-00199,EGFR L858R EGFR L858R p.L858R p.L858R,Osimertinib,0,,PASS
+CPTAC__luad_cptac_2020__C3N-00203,Other EGFR alteration Other EGFR alteration p.K479I p.K479I,Platinum-based Chemotherapy,0,,PASS
+CPTAC__luad_cptac_2020__C3N-00223,EGFR L858R; Other EGFR alteration EGFR L858R; Other EGFR alteration p.L747V; p.L858R p.L747V; p.L858R,Osimertinib,0,,PASS
+CPTAC__luad_cptac_2020__C3N-00546,EGFR G719X; EGFR S768I EGFR G719X; EGFR S768I p.G719S; p.S768I p.G719S; p.S768I,Afatinib,0,,PASS
+CPTAC__luad_cptac_2020__C3N-00550,Other EGFR alteration Other EGFR alteration p.H358R p.H358R,Platinum-based Chemotherapy,0,,PASS
+CPTAC__luad_cptac_2020__C3N-00559,EGFR exon 19 deletion EGFR exon 19 deletion p.E746_A750del p.E746_A750del,Osimertinib,0,,PASS
+CPTAC__luad_cptac_2020__C3N-00574,EGFR exon 19 deletion EGFR exon 19 deletion p.A750E; p.E746_A750del p.A750E; p.E746_A750del,Osimertinib,0,,PASS
+CPTAC__luad_cptac_2020__C3N-00579,EGFR L858R EGFR L858R p.L858R p.L858R,Osimertinib,0,,PASS
+CPTAC__luad_cptac_2020__C3N-01021,EGFR G719X; EGFR L861Q EGFR G719X; EGFR L861Q p.G719A; p.L861Q p.G719A; p.L861Q,Afatinib,0,,PASS
+CPTAC__luad_cptac_2020__C3N-01024,EGFR exon 19 deletion EGFR exon 19 deletion p.E746_A750del p.E746_A750del,Osimertinib,0,,PASS
+CPTAC__luad_cptac_2020__C3N-01413,EGFR exon 19 deletion EGFR exon 19 deletion p.E746_A750del p.E746_A750del,Osimertinib,0,,PASS
+CPTAC__luad_cptac_2020__C3N-01415,Other EGFR alteration Other EGFR alteration p.F1151F p.F1151F,Platinum-based Chemotherapy,0,,PASS
+CPTAC__luad_cptac_2020__C3N-01416,EGFR exon 19 deletion EGFR exon 19 deletion p.E746_A750del p.E746_A750del,Osimertinib,0,,PASS
+CPTAC__luad_cptac_2020__C3N-01799,EGFR L858R EGFR L858R p.L858R p.L858R,Osimertinib,0,,PASS
+CPTAC__luad_cptac_2020__C3N-02002,EGFR L858R EGFR L858R p.L858R p.L858R,Osimertinib,0,,PASS
+CPTAC__luad_cptac_2020__C3N-02067,EGFR exon 19 deletion; Other EGFR alteration EGFR exon 19 deletion; Other EGFR alteration p.L747_A750del; p.T751P p.L747_A750del; p.T751P,Osimertinib,0,,PASS
+CPTAC__luad_cptac_2020__C3N-02087,EGFR exon 20 insertion; Other EGFR alteration EGFR exon 20 insertion; Other EGFR alteration p.E746_S752delinsA; p.S752F p.E746_S752delinsA; p.S752F,Amivantamab,0,,PASS
+CPTAC__luad_cptac_2020__C3N-02145,EGFR exon 19 deletion EGFR exon 19 deletion p.E746_A750del p.E746_A750del,Osimertinib,0,,PASS
+CPTAC__luad_cptac_2020__C3N-02155,EGFR L858R EGFR L858R p.L858R p.L858R,Osimertinib,0,,PASS
+CPTAC__luad_cptac_2020__C3N-02158,EGFR exon 19 deletion EGFR exon 19 deletion p.E746_A750del p.E746_A750del,Osimertinib,0,,PASS
+CPTAC__luad_cptac_2020__C3N-02379,EGFR L858R EGFR L858R p.L858R p.L858R,Osimertinib,0,,PASS
+CPTAC__luad_cptac_2020__C3N-02380,EGFR exon 19 deletion EGFR exon 19 deletion p.E746_A750del p.E746_A750del,Osimertinib,0,,PASS
+CPTAC__luad_cptac_2020__C3N-02421,EGFR exon 20 insertion; Other EGFR alteration EGFR exon 20 insertion; Other EGFR alteration p.E746_S752delinsA; p.S752F p.E746_S752delinsA; p.S752F,Amivantamab,0,,PASS
+CPTAC__luad_cptac_2020__C3N-02424,EGFR L858R EGFR L858R p.L858R p.L858R,Osimertinib,0,,PASS
+CPTAC__luad_cptac_2020__C3N-02433,EGFR L858R EGFR L858R p.L858R p.L858R,Osimertinib,0,,PASS
+CPTAC__luad_cptac_2020__C3N-02529,EGFR L858R EGFR L858R p.L858R p.L858R,Osimertinib,0,,PASS
+CPTAC__luad_cptac_2020__C3N-02572,EGFR L858R EGFR L858R p.L858R p.L858R,Osimertinib,0,,PASS
+CPTAC__luad_cptac_2020__C3N-02582,EGFR exon 19 deletion EGFR exon 19 deletion p.E746_A750del p.E746_A750del,Osimertinib,1,resistance:bypass_present_but_resistance_risk_low,REVIEW
+CPTAC__luad_cptac_2020__C3N-02729,EGFR L858R EGFR L858R p.L858R p.L858R,Osimertinib,0,,PASS
+CPTAC__luad_cptac_2020__X11LU013,EGFR exon 20 insertion; Other EGFR alteration EGFR exon 20 insertion; Other EGFR alteration p.E746_S752delinsA; p.S752F p.E746_S752delinsA; p.S752F,Amivantamab,0,,PASS
+CPTAC__luad_cptac_2020__X11LU016,EGFR G719X; EGFR S768I EGFR G719X; EGFR S768I p.G719C; p.S768I p.G719C; p.S768I,Afatinib,1,resistance:bypass_present_but_resistance_risk_low,REVIEW
+TCGA__luad_tcga__TCGA-05-4382,Other EGFR alteration Other EGFR alteration p.E545Q; p.R222L p.E545Q; p.R222L,Platinum-based Chemotherapy,1,resistance:bypass_present_but_resistance_risk_low,REVIEW
+TCGA__luad_tcga__TCGA-05-4402,EGFR exon 19 deletion EGFR exon 19 deletion p.T751_E758del p.T751_E758del,Osimertinib,0,,PASS
+TCGA__luad_tcga__TCGA-05-4410,Other EGFR alteration Other EGFR alteration p.R377S p.R377S,Platinum-based Chemotherapy,1,resistance:bypass_present_but_resistance_risk_low,REVIEW
+TCGA__luad_tcga__TCGA-05-5423,EGFR L861Q; Other EGFR alteration EGFR L861Q; Other EGFR alteration p.L833F; p.L861Q p.L833F; p.L861Q,Afatinib,0,,PASS
+TCGA__luad_tcga__TCGA-38-4627,EGFR L858R; Other EGFR alteration EGFR L858R; Other EGFR alteration p.L62R; p.L858R p.L62R; p.L858R,Osimertinib,0,,PASS
+TCGA__luad_tcga__TCGA-38-4628,EGFR exon 19 deletion EGFR exon 19 deletion p.E746_A750del p.E746_A750del,Osimertinib,0,,PASS
+TCGA__luad_tcga__TCGA-38-6178,EGFR exon 19 deletion EGFR exon 19 deletion p.E746_A750del p.E746_A750del,Osimertinib,0,,PASS
+TCGA__luad_tcga__TCGA-44-2661,EGFR exon 19 deletion EGFR exon 19 deletion p.E746_A750del p.E746_A750del,Osimertinib,0,,PASS
+TCGA__luad_tcga__TCGA-44-6147,EGFR S768I; Other EGFR alteration EGFR S768I; Other EGFR alteration p.S768I; p.V769L p.S768I; p.V769L,Afatinib,0,,PASS
+TCGA__luad_tcga__TCGA-49-4490,EGFR L858R EGFR L858R p.L858R p.L858R,Osimertinib,0,,PASS
+TCGA__luad_tcga__TCGA-49-4494,EGFR L858R; EGFR T790M EGFR L858R; EGFR T790M p.L858R; p.T790M p.L858R; p.T790M,Osimertinib,0,,PASS
+TCGA__luad_tcga__TCGA-49-4501,EGFR exon 19 deletion EGFR exon 19 deletion p.E746_A750del p.E746_A750del,Osimertinib,0,,PASS
+TCGA__luad_tcga__TCGA-50-5933,Other EGFR alteration Other EGFR alteration p.P753= p.P753=,Platinum-based Chemotherapy,1,resistance:bypass_present_but_resistance_risk_low,REVIEW
+TCGA__luad_tcga__TCGA-50-5944,EGFR L858R EGFR L858R p.L858R p.L858R,Osimertinib,0,,PASS
+TCGA__luad_tcga__TCGA-50-6595,EGFR G719X; EGFR S768I EGFR G719X; EGFR S768I p.G719A; p.S768I p.G719A; p.S768I,Afatinib,0,,PASS
+TCGA__luad_tcga__TCGA-50-6673,EGFR exon 20 insertion EGFR exon 20 insertion p.H773dup p.H773dup,Amivantamab,0,,PASS
+TCGA__luad_tcga__TCGA-55-6980,EGFR exon 20 insertion EGFR exon 20 insertion p.E709_T710delinsD p.E709_T710delinsD,Amivantamab,0,,PASS
+TCGA__luad_tcga__TCGA-55-6981,EGFR exon 19 deletion EGFR exon 19 deletion p.L747_T751del p.L747_T751del,Osimertinib,0,,PASS
+TCGA__luad_tcga__TCGA-55-7573,EGFR exon 19 deletion; Other EGFR alteration EGFR exon 19 deletion; Other EGFR alteration p.K754E; p.L747_E749del p.K754E; p.L747_E749del,Osimertinib,0,,PASS
+TCGA__luad_tcga__TCGA-64-1681,EGFR L858R EGFR L858R p.L858R p.L858R,Osimertinib,0,,PASS
+TCGA__luad_tcga__TCGA-67-3771,Other EGFR alteration Other EGFR alteration p.I853= p.I853=,Platinum-based Chemotherapy,0,,PASS
+TCGA__luad_tcga__TCGA-67-3772,EGFR L858R EGFR L858R p.L858R p.L858R,Osimertinib,0,,PASS
+TCGA__luad_tcga__TCGA-67-6217,EGFR L858R EGFR L858R p.L858R p.L858R,Osimertinib,0,,PASS
+TCGA__luad_tcga__TCGA-69-7760,EGFR exon 20 insertion EGFR exon 20 insertion p.E709_T710delinsD p.E709_T710delinsD,Amivantamab,0,,PASS
+TCGA__luad_tcga__TCGA-69-7765,Other EGFR alteration Other EGFR alteration p.Q486* p.Q486*,Platinum-based Chemotherapy,1,resistance:bypass_present_but_resistance_risk_low,REVIEW
+TCGA__luad_tcga__TCGA-75-6207,EGFR exon 19 deletion EGFR exon 19 deletion p.E746_A750del p.E746_A750del,Osimertinib,0,,PASS
+TCGA__luad_tcga__TCGA-75-6212,EGFR exon 19 deletion EGFR exon 19 deletion p.L747_E749del p.L747_E749del,Osimertinib,0,,PASS
+TCGA__luad_tcga__TCGA-75-7025,EGFR exon 19 deletion EGFR exon 19 deletion p.E746_A750del p.E746_A750del,Osimertinib,0,,PASS
+TCGA__luad_tcga__TCGA-78-7147,EGFR L861Q; EGFR exon 19 deletion; Other EGFR alteration EGFR L861Q; EGFR exon 19 deletion; Other EGFR alteration p.D1083Efs*11; p.L387M; p.L861Q p.D1083Efs*11; p.L387M; p.L861Q,Osimertinib,0,,PASS
+TCGA__luad_tcga__TCGA-78-7155,Other EGFR alteration Other EGFR alteration p.G901V; p.K754I; p.Q432H p.G901V; p.K754I; p.Q432H,Platinum-based Chemotherapy,0,,PASS
+TCGA__luad_tcga__TCGA-78-7158,Other EGFR alteration Other EGFR alteration p.L907M p.L907M,Platinum-based Chemotherapy,0,,PASS
+TCGA__luad_tcga__TCGA-91-6835,EGFR L858R EGFR L858R p.L858R p.L858R,Osimertinib,0,,PASS
+TCGA__luad_tcga__TCGA-91-6847,EGFR L861Q EGFR L861Q p.L861Q p.L861Q,Afatinib,0,,PASS
+TCGA__luad_tcga__TCGA-95-7039,Other EGFR alteration Other EGFR alteration p.S921R p.S921R,Platinum-based Chemotherapy,1,resistance:bypass_present_but_resistance_risk_low,REVIEW
+TCGA__luad_tcga__TCGA-95-7947,Other EGFR alteration Other EGFR alteration p.I91V; p.R1052I p.I91V; p.R1052I,Platinum-based Chemotherapy,1,resistance:bypass_present_but_resistance_risk_low,REVIEW

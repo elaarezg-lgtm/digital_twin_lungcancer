@@ -1,0 +1,7 @@
+step,task,details,status
+1,Create a Synapse account,"Use a normal Synapse username/password account, not only Google login if the package requires token authentication.",TODO
+2,Open AACR GENIE BPC Public project,Navigate to the GENIE Biopharma Collaborative Public Synapse project.,TODO
+3,Request/accept access terms,"For NSCLC v2.0-public, accept the data use terms on Synapse.",TODO
+4,Create Synapse Personal Access Token,Create a PAT in Synapse settings. Store it safely. Do not paste it in public notebooks.,TODO
+5,Download or pull NSCLC v2.0-public data,"Use Synapse web download, synapseclient Python, or R genieBPC package.",TODO
+6,"Extract clinical, genomic, treatment, and outcome tables","Needed tables include patient, sample, mutation, regimen/drug exposure, imaging/medical oncology assessments, progression, death/follow-up.",TODO

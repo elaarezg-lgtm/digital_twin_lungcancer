@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<!-- saved from url=(0078)https://8010-m-s-kkb-usw3b0-9u19dv6y7qeg-b.us-west3-0.prod.colab.dev/dashboard -->
+<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>EGFR Lung Cancer Digital Twin</title>
+
+<style>
+:root{
+  --bg:#07111f;
+  --panel:#0f1b2d;
+  --panel2:#111f34;
+  --card:#13233a;
+  --border:#263a57;
+  --text:#f8fafc;
+  --muted:#94a3b8;
+  --cyan:#22d3ee;
+  --blue:#3b82f6;
+  --green:#22c55e;
+  --orange:#f97316;
+  --red:#ef4444;
+  --purple:#a855f7;
+  --yellow:#facc15;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:radial-gradient(circle at top left,#0b2a45,#07111f 45%,#020617);
+  color:var(--text);
+}
+
+.topbar{
+  height:82px;
+  padding:18px 28px;
+  border-bottom:1px solid var(--border);
+  background:linear-gradient(90deg,#08111f,#102445,#07111f);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo h1{
+  margin:0;
+  font-size:27px;
+  letter-spacing:0.5px;
+}
+
+.logo p{
+  margin:5px 0 0;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.badge{
+  background:#063247;
+  border:1px solid var(--cyan);
+  color:#a5f3fc;
+  padding:8px 12px;
+  border-radius:999px;
+  font-size:13px;
+  font-weight:bold;
+}
+
+.app{
+  display:grid;
+  grid-template-columns:330px 1fr;
+  height:calc(100vh - 82px);
+}
+
+.sidebar{
+  border-right:1px solid var(--border);
+  background:rgba(15,27,45,0.95);
+  padding:18px;
+  overflow:auto;
+}
+
+.sidebar h2{
+  margin:0 0 14px;
+  font-size:20px;
+}
+
+.search{
+  width:100%;
+  background:#07111f;
+  border:1px solid var(--border);
+  color:white;
+  padding:12px;
+  border-radius:12px;
+  margin-bottom:14px;
+  outline:none;
+}
+
+.patient{
+  padding:13px;
+  margin-bottom:11px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background:#0b1627;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.patient:hover{
+  border-color:var(--cyan);
+  transform:translateX(2px);
+}
+
+.patient.active{
+  background:linear-gradient(135deg,#0e7490,#1d4ed8);
+  border-color:#67e8f9;
+}
+
+.patient b{
+  display:block;
+  font-size:15px;
+  margin-bottom:4px;
+}
+
+.patient span{
+  display:block;
+  font-size:12px;
+  color:#cbd5e1;
+  line-height:1.4;
+}
+
+.main{
+  padding:22px;
+  overflow:auto;
+}
+
+.grid{
+  display:grid;
+  gap:18px;
+}
+
+.grid-3{
+  grid-template-columns:1.2fr 1fr 1.1fr;
+}
+
+.grid-2{
+  grid-template-columns:1fr 1fr;
+}
+
+.card{
+  background:linear-gradient(180deg,rgba(19,35,58,.98),rgba(15,27,45,.98));
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:18px;
+  box-shadow:0 18px 40px rgba(0,0,0,.22);
+}
+
+.card h2{
+  margin:0 0 14px;
+  font-size:20px;
+}
+
+.card h3{
+  margin:0 0 10px;
+  font-size:16px;
+  color:#dbeafe;
+}
+
+.info-row{
+  display:flex;
+  justify-content:space-between;
+  border-bottom:1px solid rgba(148,163,184,.12);
+  padding:8px 0;
+  gap:12px;
+}
+
+.info-row .label{
+  color:var(--muted);
+}
+
+.info-row .value{
+  text-align:right;
+  font-weight:bold;
+}
+
+.big-number{
+  font-size:35px;
+  color:var(--cyan);
+  font-weight:bold;
+}
+
+.small{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.pill{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:999px;
+  margin:3px;
+  font-size:12px;
+  font-weight:bold;
+  background:#334155;
+}
+
+.pill.cyan{background:#0e7490}
+.pill.green{background:#166534}
+.pill.red{background:#991b1b}
+.pill.orange{background:#9a3412}
+.pill.purple{background:#6b21a8}
+.pill.blue{background:#1d4ed8}
+
+.progress{
+  height:11px;
+  background:#0b1627;
+  border-radius:999px;
+  overflow:hidden;
+  border:1px solid var(--border);
+}
+
+.progress div{
+  height:100%;
+  border-radius:999px;
+  background:linear-gradient(90deg,var(--cyan),var(--blue));
+}
+
+button, select{
+  border:none;
+  border-radius:12px;
+  padding:11px 14px;
+  font-weight:bold;
+}
+
+button{
+  cursor:pointer;
+  color:white;
+  background:linear-gradient(135deg,#0891b2,#2563eb);
+}
+
+button.secondary{
+  background:#1e293b;
+  border:1px solid var(--border);
+}
+
+select{
+  width:100%;
+  background:#07111f;
+  color:white;
+  border:1px solid var(--border);
+  margin-bottom:10px;
+}
+
+.sim-box{
+  display:grid;
+  grid-template-columns:260px 1fr;
+  gap:18px;
+  align-items:start;
+}
+
+.month-box{
+  background:#07111f;
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:16px;
+}
+
+.month-number{
+  font-size:46px;
+  color:var(--cyan);
+  font-weight:bold;
+}
+
+canvas{
+  width:100%;
+  height:310px;
+  background:#07111f;
+  border:1px solid var(--border);
+  border-radius:18px;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:13px;
+}
+
+th,td{
+  padding:10px;
+  border-bottom:1px solid rgba(148,163,184,.18);
+  text-align:left;
+}
+
+th{
+  color:#a5f3fc;
+  background:#07111f;
+}
+
+.explain{
+  line-height:1.6;
+  color:#e2e8f0;
+  background:#07111f;
+  border-left:4px solid var(--cyan);
+  padding:14px;
+  border-radius:14px;
+  margin-bottom:12px;
+}
+
+.warning{
+  border-left-color:var(--orange);
+}
+
+@media(max-width:1100px){
+  .app{grid-template-columns:1fr}
+  .grid-3,.grid-2,.sim-box{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <div class="logo">
+    <h1>EGFR Lung Cancer Digital Twin</h1>
+    <p>Prédiction IA · Simulation dynamique 12 mois · Adaptation au contexte tunisien</p>
+  </div>
+  <div class="badge">Prototype PFE — Médecine de précision</div>
+</div>
+
+<div class="app">
+
+<aside class="sidebar">
+  <h2>Patients TCGA</h2>
+  <input class="search" id="search" placeholder="Rechercher patient, mutation, stade..." oninput="renderPatientList()">
+  <div id="patientList">
+    <div class="patient " onclick="loadPatient(&#39;TCGA-67-6217&#39;)">
+      <b>TCGA-67-6217</b>
+      <span>EGFR L858R</span>
+      <span>Âge 73 ans · Stade II · FEMALE</span>
+      <span>Amivantamab + Lazertinib</span>
+    </div>
+  
+    <div class="patient active" onclick="loadPatient(&#39;TCGA-91-6847&#39;)">
+      <b>TCGA-91-6847</b>
+      <span>Other EGFR mutation</span>
+      <span>Âge 56.2 ans · Stade I · FEMALE</span>
+      <span>Osimertinib</span>
+    </div>
+  
+    <div class="patient " onclick="loadPatient(&#39;TCGA-44-2661&#39;)">
+      <b>TCGA-44-2661</b>
+      <span>EGFR exon 19 deletion</span>
+      <span>Âge 65 ans · Stade I · FEMALE</span>
+      <span>Amivantamab + Lazertinib</span>
+    </div>
+  
+    <div class="patient " onclick="loadPatient(&#39;TCGA-05-4402&#39;)">
+      <b>TCGA-05-4402</b>
+      <span>EGFR exon 19 deletion</span>
+      <span>Âge 50 ans · Stade IV · FEMALE</span>
+      <span>Amivantamab + Lazertinib</span>
+    </div>
+  
+    <div class="patient " onclick="loadPatient(&#39;TCGA-64-1681&#39;)">
+      <b>TCGA-64-1681</b>
+      <span>EGFR L858R</span>
+      <span>Âge 55 ans · Stade I · FEMALE</span>
+      <span>Amivantamab + Lazertinib</span>
+    </div>
+  
+    <div class="patient " onclick="loadPatient(&#39;TCGA-69-7765&#39;)">
+      <b>TCGA-69-7765</b>
+      <span>Other EGFR mutation</span>
+      <span>Âge 48.8 ans · Stade IV · MALE</span>
+      <span>Osimertinib</span>
+    </div>
+  
+    <div class="patient " onclick="loadPatient(&#39;TCGA-50-6595&#39;)">
+      <b>TCGA-50-6595</b>
+      <span>Other EGFR mutation</span>
+      <span>Âge 71.2 ans · Stade III · FEMALE</span>
+      <span>Osimertinib</span>
+    </div>
+  
+    <div class="patient " onclick="loadPatient(&#39;TCGA-49-4494&#39;)">
+      <b>TCGA-49-4494</b>
+      <span>EGFR T790M resistance</span>
+      <span>Âge 75 ans · Stade III · MALE</span>
+      <span>Osimertinib</span>
+    </div>
+  
+    <div class="patient " onclick="loadPatient(&#39;TCGA-38-6178&#39;)">
+      <b>TCGA-38-6178</b>
+      <span>EGFR exon 19 deletion</span>
+      <span>Âge 66.2 ans · Stade III · FEMALE</span>
+      <span>Amivantamab + Lazertinib</span>
+    </div>
+  
+    <div class="patient " onclick="loadPatient(&#39;TCGA-38-4627&#39;)">
+      <b>TCGA-38-4627</b>
+      <span>EGFR L858R</span>
+      <span>Âge 58.8 ans · Stade II · FEMALE</span>
+      <span>Amivantamab + Lazertinib</span>
+    </div>
+  
+    <div class="patient " onclick="loadPatient(&#39;TCGA-49-4501&#39;)">
+      <b>TCGA-49-4501</b>
+      <span>EGFR exon 19 deletion</span>
+      <span>Âge 62.5 ans · Stade I · FEMALE</span>
+      <span>Amivantamab + Lazertinib</span>
+    </div>
+  
+    <div class="patient " onclick="loadPatient(&#39;TCGA-75-6207&#39;)">
+      <b>TCGA-75-6207</b>
+      <span>EGFR exon 19 deletion</span>
+      <span>Âge 62.5 ans · Stade III · MALE</span>
+      <span>Amivantamab + Lazertinib</span>
+    </div>
+  
+    <div class="patient " onclick="loadPatient(&#39;TCGA-78-7155&#39;)">
+      <b>TCGA-78-7155</b>
+      <span>Other EGFR mutation</span>
+      <span>Âge 63.8 ans · Stade I · MALE</span>
+      <span>Osimertinib</span>
+    </div>
+  
+    <div class="patient " onclick="loadPatient(&#39;TCGA-44-6147&#39;)">
+      <b>TCGA-44-6147</b>
+      <span>Other EGFR mutation</span>
+      <span>Âge 62.5 ans · Stade I · FEMALE</span>
+      <span>Osimertinib</span>
+    </div>
+  
+    <div class="patient " onclick="loadPatient(&#39;TCGA-75-6212&#39;)">
+      <b>TCGA-75-6212</b>
+      <span>EGFR exon 19 deletion</span>
+      <span>Âge 62.5 ans · Stade II · FEMALE</span>
+      <span>Amivantamab + Lazertinib</span>
+    </div>
+  
+    <div class="patient " onclick="loadPatient(&#39;TCGA-95-7947&#39;)">
+      <b>TCGA-95-7947</b>
+      <span>Other EGFR mutation</span>
+      <span>Âge 62.5 ans · Stade I · MALE</span>
+      <span>Osimertinib</span>
+    </div>
+  
+    <div class="patient " onclick="loadPatient(&#39;TCGA-55-6981&#39;)">
+      <b>TCGA-55-6981</b>
+      <span>EGFR exon 19 deletion</span>
+      <span>Âge 45 ans · Stade III · FEMALE</span>
+      <span>Amivantamab + Lazertinib</span>
+    </div>
+  
+    <div class="patient " onclick="loadPatient(&#39;TCGA-95-7039&#39;)">
+      <b>TCGA-95-7039</b>
+      <span>Other EGFR mutation</span>
+      <span>Âge 46.2 ans · Stade II · FEMALE</span>
+      <span>Osimertinib</span>
+    </div>
+  
+    <div class="patient " onclick="loadPatient(&#39;TCGA-91-6835&#39;)">
+      <b>TCGA-91-6835</b>
+      <span>EGFR L858R</span>
+      <span>Âge 80 ans · Stade I · FEMALE</span>
+      <span>Amivantamab + Lazertinib</span>
+    </div>
+  
+    <div class="patient " onclick="loadPatient(&#39;TCGA-78-7147&#39;)">
+      <b>TCGA-78-7147</b>
+      <span>Other EGFR mutation</span>
+      <span>Âge 62.5 ans · Stade II · FEMALE</span>
+      <span>Osimertinib</span>
+    </div>
+  
+    <div class="patient " onclick="loadPatient(&#39;TCGA-05-4410&#39;)">
+      <b>TCGA-05-4410</b>
+      <span>Other EGFR mutation</span>
+      <span>Âge 56.2 ans · Stade I · MALE</span>
+      <span>Osimertinib</span>
+    </div>
+  
+    <div class="patient " onclick="loadPatient(&#39;TCGA-69-7760&#39;)">
+      <b>TCGA-69-7760</b>
+      <span>Other EGFR mutation</span>
+      <span>Âge 70 ans · Stade II · MALE</span>
+      <span>Osimertinib</span>
+    </div>
+  
+    <div class="patient " onclick="loadPatient(&#39;TCGA-55-7573&#39;)">
+      <b>TCGA-55-7573</b>
+      <span>EGFR exon 19 deletion</span>
+      <span>Âge 68.8 ans · Stade I · FEMALE</span>
+      <span>Amivantamab + Lazertinib</span>
+    </div>
+  </div>
+</aside>
+
+<main class="main">
+
+  <div class="grid grid-3">
+    <div class="card">
+      <h2>Patient sélectionné</h2>
+      <div class="big-number" id="selectedPatient">TCGA-91-6847</div>
+      <div class="small" id="selectedSubtitle">Other EGFR mutation · Stade I · FEMALE</div>
+    </div>
+
+    <div class="card">
+      <h2>Traitement IA</h2>
+      <div class="big-number" id="bestTreatmentShort">Osimertinib</div>
+      <div class="small">traitement recommandé par le modèle</div>
+    </div>
+
+    <div class="card">
+      <h2>État prédit à 12 mois</h2>
+      <div class="big-number" id="futureStateShort">Progression probable</div>
+      <div class="small">selon simulation du traitement choisi</div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="grid grid-3">
+    <section class="card">
+      <h2>Résumé clinique</h2>
+      <div class="info-row"><span class="label">Âge</span><span class="value" id="age">56.2 ans</span></div>
+      <div class="info-row"><span class="label">Sexe</span><span class="value" id="sex">FEMALE</span></div>
+      <div class="info-row"><span class="label">Stade tumoral</span><span class="value" id="stage">I</span></div>
+      <div class="info-row"><span class="label">Statut de survie</span><span class="value" id="survival">LIVING</span></div>
+    </section>
+
+    <section class="card">
+      <h2>Profil moléculaire</h2>
+      <div class="info-row"><span class="label">EGFR</span><span class="value" id="egfr">Other EGFR mutation</span></div>
+      <div class="info-row"><span class="label">Mutation brute</span><span class="value" id="egfrRaw">Uncommon sensitizing EGFR mutation</span></div>
+      <h3>Altérations secondaires</h3>
+      <div id="mutations"><span class="pill purple">TP53</span><span class="pill purple">KRAS</span><span class="pill purple">MET</span><span class="pill purple">ERBB2</span><span class="pill purple">BRAF</span><span class="pill purple">RB1</span><span class="pill purple">NRAS</span><span class="pill purple">AKT1</span></div>
+      <h3>Mécanismes de résistance</h3>
+      <div id="resistanceMechs"><span class="pill orange">MET bypass signaling</span><span class="pill orange">PI3K/AKT pathway bypass</span><span class="pill orange">MAPK pathway bypass</span><span class="pill orange">Genomic instability / aggressive phenotype</span></div>
+    </section>
+
+    <section class="card">
+      <h2>Scores biologiques</h2>
+      <div class="info-row"><span class="label">Sensibilité</span><span class="value" id="sensScore">52%</span></div>
+      <div class="progress"><div id="sensBar" style="width: 52%;"></div></div><br>
+
+      <div class="info-row"><span class="label">Résistance</span><span class="value" id="resScore">53%</span></div>
+      <div class="progress"><div id="resBar" style="width: 53%;"></div></div><br>
+
+      <div class="info-row"><span class="label">Agressivité</span><span class="value" id="aggScore">30.7%</span></div>
+      <div class="progress"><div id="aggBar" style="width: 30.7%;"></div></div><br>
+
+      <div class="info-row"><span class="label">Score tunisien</span><span class="value" id="tnScore">28%</span></div>
+      <div class="progress"><div id="tnBar" style="width: 28%;"></div></div>
+    </section>
+  </div>
+
+  <br>
+
+  <section class="card">
+    <h2>Simulation dynamique du traitement</h2>
+
+    <div class="sim-box">
+      <div class="month-box">
+        <label class="small">Choisir un médicament</label>
+        <select id="drugSelect"><option value="Osimertinib">Osimertinib</option><option value="Amivantamab + Lazertinib">Amivantamab + Lazertinib</option><option value="Osimertinib + Chemotherapy">Osimertinib + Chemotherapy</option><option value="Lazertinib">Lazertinib</option><option value="Amivantamab">Amivantamab</option><option value="Afatinib">Afatinib</option><option value="Erlotinib">Erlotinib</option><option value="Gefitinib">Gefitinib</option><option value="Platinum-based Chemotherapy">Platinum-based Chemotherapy</option><option value="Dacomitinib">Dacomitinib</option></select>
+
+        <button onclick="startSimulation()">Lancer simulation 12 mois</button>
+        <button class="secondary" onclick="resetSimulation()">Réinitialiser</button>
+
+        <br><br>
+
+        <div class="small">Mois simulé</div>
+        <div class="month-number" id="monthNumber">12</div>
+
+        <div class="info-row"><span class="label">Réponse</span><span class="value" id="monthResponse">Progression probable</span></div>
+        <div class="info-row"><span class="label">Volume tumoral</span><span class="value" id="monthVolume">122.52%</span></div>
+        <div class="info-row"><span class="label">Viabilité</span><span class="value" id="monthViability">78.71%</span></div>
+        <div class="info-row"><span class="label">Effet médicament</span><span class="value" id="monthDrugEffect">28%</span></div>
+        <div class="info-row"><span class="label">Résistance</span><span class="value" id="monthResistance">98%</span></div>
+      </div>
+
+      <div>
+        <canvas id="mainChart" width="1000" height="310"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <br>
+
+  <div class="grid grid-2">
+    <section class="card">
+      <h2>Interprétation médicale</h2>
+      <div class="explain" id="doctorExplanation">Le profil Other EGFR mutation oriente vers une stratégie ciblée. Le traitement Osimertinib présente une efficacité prédite de 52% avec un risque de résistance de 53%. Le patient est classé stade I. À 12 mois, le modèle estime : Risque de progression ou de résistance à surveiller avec une probabilité de réponse de 18% et un risque de progression de 75%.</div>
+      <div class="explain warning" id="tunisiaExplanation">Contexte tunisien : Limité / vérifier pharmacie hospitalière. Alternative proposée : Erlotinib/géfitinib/afatinib ou chimiothérapie à base de platine selon disponibilité. Cette couche est indicative et doit être vérifiée selon la pharmacie hospitalière et le protocole local.</div>
+    </section>
+
+    <section class="card">
+      <h2>Interprétation laboratoire / anapath</h2>
+      <div class="explain" id="labExplanation">Profil moléculaire : Other EGFR mutation. Mutations associées : TP53, MET, KRAS. La présence de voies de résistance comme MET ou TP53 peut augmenter le risque d'échappement thérapeutique. Le suivi recommandé doit combiner l'évolution clinique, les données moléculaires et les marqueurs pathologiques simulés.</div>
+    </section>
+  </div>
+
+  <br>
+
+  <section class="card">
+    <h2>Classement thérapeutique IA</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Rang</th>
+          <th>Traitement</th>
+          <th>Efficacité</th>
+          <th>Résistance</th>
+          <th>Réponse 12 mois</th>
+          <th>Progression</th>
+          <th>Faisabilité Tunisie</th>
+        </tr>
+      </thead>
+      <tbody id="rankingBody">
+      <tr>
+        <td>1</td>
+        <td><b>Osimertinib</b></td>
+        <td>52%</td>
+        <td>53%</td>
+        <td>18%</td>
+        <td>75%</td>
+        <td>Limité / vérifier pharmacie hospitalière</td>
+      </tr>
+    
+      <tr>
+        <td>2</td>
+        <td><b>Amivantamab + Lazertinib</b></td>
+        <td>52%</td>
+        <td>53%</td>
+        <td>18%</td>
+        <td>75%</td>
+        <td>Très limité / importation ou recherche</td>
+      </tr>
+    
+      <tr>
+        <td>3</td>
+        <td><b>Osimertinib + Chemotherapy</b></td>
+        <td>52%</td>
+        <td>53%</td>
+        <td>18%</td>
+        <td>75%</td>
+        <td>Limité / vérifier pharmacie hospitalière</td>
+      </tr>
+    
+      <tr>
+        <td>4</td>
+        <td><b>Lazertinib</b></td>
+        <td>52%</td>
+        <td>53%</td>
+        <td>18%</td>
+        <td>75%</td>
+        <td>Très limité / importation ou recherche</td>
+      </tr>
+    
+      <tr>
+        <td>5</td>
+        <td><b>Amivantamab</b></td>
+        <td>52%</td>
+        <td>53%</td>
+        <td>18%</td>
+        <td>75%</td>
+        <td>Très limité / importation ou recherche</td>
+      </tr>
+    
+      <tr>
+        <td>6</td>
+        <td><b>Afatinib</b></td>
+        <td>52%</td>
+        <td>53%</td>
+        <td>18%</td>
+        <td>75%</td>
+        <td>Alternative possible / vérifier disponibilité</td>
+      </tr>
+    
+      <tr>
+        <td>7</td>
+        <td><b>Erlotinib</b></td>
+        <td>52%</td>
+        <td>53%</td>
+        <td>18%</td>
+        <td>75%</td>
+        <td>Alternative possible / vérifier disponibilité</td>
+      </tr>
+    
+      <tr>
+        <td>8</td>
+        <td><b>Gefitinib</b></td>
+        <td>52%</td>
+        <td>53%</td>
+        <td>18%</td>
+        <td>75%</td>
+        <td>Alternative possible / vérifier disponibilité</td>
+      </tr>
+    
+      <tr>
+        <td>9</td>
+        <td><b>Platinum-based Chemotherapy</b></td>
+        <td>52%</td>
+        <td>53%</td>
+        <td>18%</td>
+        <td>75%</td>
+        <td>Option locale plus accessible</td>
+      </tr>
+    
+      <tr>
+        <td>10</td>
+        <td><b>Dacomitinib</b></td>
+        <td>52%</td>
+        <td>53%</td>
+        <td>18%</td>
+        <td>75%</td>
+        <td>Alternative possible / vérifier disponibilité</td>
+      </tr>
+    </tbody>
+    </table>
+  </section>
+
+</main>
+</div>
+
+<script>
+let PATIENTS = [];
+let CURRENT = null;
+let animationTimer = null;
+
+async function api(path){
+  const res = await fetch(path);
+  if(!res.ok){ throw new Error(await res.text()); }
+  return await res.json();
+}
+
+async function init(){
+  PATIENTS = await api("/api/patients");
+  renderPatientList();
+
+  if(PATIENTS.length > 0){
+    await loadPatient(PATIENTS[0].patient_id);
+  }
+}
+
+function renderPatientList(){
+  const q = document.getElementById("search").value.toLowerCase();
+  const container = document.getElementById("patientList");
+
+  const filtered = PATIENTS.filter(p => JSON.stringify(p).toLowerCase().includes(q));
+
+  container.innerHTML = filtered.map(p => `
+    <div class="patient ${CURRENT && CURRENT.patient_id === p.patient_id ? "active" : ""}" onclick="loadPatient('${p.patient_id}')">
+      <b>${p.patient_id}</b>
+      <span>${p.egfr}</span>
+      <span>Âge ${p.age_years || "--"} ans · Stade ${p.stage} · ${p.sex}</span>
+      <span>${p.best_treatment}</span>
+    </div>
+  `).join("");
+}
+
+async function loadPatient(pid){
+  clearInterval(animationTimer);
+  CURRENT = await api(`/api/patient/${pid}`);
+  renderPatientList();
+  renderPatient(CURRENT);
+}
+
+function setText(id,val){
+  document.getElementById(id).textContent = val ?? "--";
+}
+
+function setBar(id,val){
+  const v = Math.max(0, Math.min(100, Number(val || 0)));
+  document.getElementById(id).style.width = v + "%";
+}
+
+function pill(text, cls){
+  return `<span class="pill ${cls || "blue"}">${text}</span>`;
+}
+
+function renderPatient(p){
+  const c = p.clinical_profile || {};
+  const m = p.molecular_profile || {};
+  const bio = p.bio_scores || {};
+  const best = p.best_prediction || {};
+  const future = p.clinical_future || {};
+
+  setText("selectedPatient", p.patient_id);
+  setText("selectedSubtitle", `${m.egfr_class || "--"} · Stade ${c.stage || "--"} · ${c.sex || "--"}`);
+
+  setText("bestTreatmentShort", best.drug || "--");
+  setText("futureStateShort", future.final_response_category || "--");
+
+  setText("age", c.age_years ? `${c.age_years} ans` : "--");
+  setText("sex", c.sex);
+  setText("stage", c.stage);
+  setText("survival", c.survival_status);
+
+  setText("egfr", m.egfr_class);
+  setText("egfrRaw", m.egfr_raw);
+
+  const muts = m.secondary_mutations || [];
+  const ress = m.resistance_mechanisms || [];
+
+  document.getElementById("mutations").innerHTML =
+    muts.length ? muts.map(x => pill(x,"purple")).join("") : pill("Aucune", "blue");
+
+  document.getElementById("resistanceMechs").innerHTML =
+    ress.length ? ress.map(x => pill(x,"orange")).join("") : pill("Aucun", "blue");
+
+  setText("sensScore", `${bio.treatment_sensitivity || 0}%`);
+  setText("resScore", `${bio.resistance_score || 0}%`);
+  setText("aggScore", `${bio.tumor_aggressiveness || 0}%`);
+  setText("tnScore", `${bio.tunisian_output_score || 0}%`);
+
+  setBar("sensBar", bio.treatment_sensitivity);
+  setBar("resBar", bio.resistance_score);
+  setBar("aggBar", bio.tumor_aggressiveness);
+  setBar("tnBar", bio.tunisian_output_score);
+
+  renderDrugSelect(p);
+  renderRanking(p.treatment_ranking || []);
+  resetSimulation();
+}
+
+function renderDrugSelect(p){
+  const select = document.getElementById("drugSelect");
+  const sims = p.simulation_by_treatment || {};
+  const drugs = Object.keys(sims);
+
+  select.innerHTML = drugs.map(d => `<option value="${d}">${d}</option>`).join("");
+
+  const best = p.best_prediction?.drug;
+  if(best && drugs.includes(best)){
+    select.value = best;
+  }
+
+  select.onchange = () => {
+    resetSimulation();
+    updateExplanationsForDrug(select.value);
+  };
+
+  updateExplanationsForDrug(select.value);
+}
+
+function selectedPayload(){
+  const drug = document.getElementById("drugSelect").value;
+  const sims = CURRENT.simulation_by_treatment || {};
+  return sims[drug];
+}
+
+function resetSimulation(){
+  clearInterval(animationTimer);
+  setText("monthNumber", "0");
+  setText("monthResponse", "--");
+  setText("monthVolume", "--");
+  setText("monthViability", "--");
+  setText("monthDrugEffect", "--");
+  setText("monthResistance", "--");
+
+  const payload = selectedPayload();
+  if(payload && payload.timeline){
+    drawChart(payload.timeline, 0);
+    updateExplanationsForDrug(document.getElementById("drugSelect").value);
+  }
+}
+
+function startSimulation(){
+  clearInterval(animationTimer);
+
+  const payload = selectedPayload();
+  if(!payload || !payload.timeline) return;
+
+  const timeline = payload.timeline;
+  let i = 0;
+
+  updateMonth(timeline[0], 1);
+  drawChart(timeline, 1);
+
+  animationTimer = setInterval(() => {
+    i++;
+    if(i >= timeline.length){
+      clearInterval(animationTimer);
+      return;
+    }
+
+    updateMonth(timeline[i], i + 1);
+    drawChart(timeline, i + 1);
+  }, 750);
+}
+
+function updateMonth(m, visibleCount){
+  setText("monthNumber", m.month);
+  setText("monthResponse", m.response);
+  setText("monthVolume", `${m.tumor_volume}%`);
+  setText("monthViability", `${m.cell_viability}%`);
+  setText("monthDrugEffect", `${Math.round(m.drug_effect * 100)}%`);
+  setText("monthResistance", `${Math.round(m.resistance * 100)}%`);
+}
+
+function updateExplanationsForDrug(drug){
+  const payload = CURRENT?.simulation_by_treatment?.[drug];
+  if(!payload) return;
+
+  const exp = payload.explanations || {};
+  setText("doctorExplanation", exp.doctor_explanation || "--");
+  setText("labExplanation", exp.lab_explanation || "--");
+  setText("tunisiaExplanation", exp.tunisia_explanation || "--");
+}
+
+function renderRanking(ranking){
+  const body = document.getElementById("rankingBody");
+  body.innerHTML = ranking.map(r => {
+    const fut = r.clinical_future || {};
+    return `
+      <tr>
+        <td>${r.rank}</td>
+        <td><b>${r.drug}</b></td>
+        <td>${Math.round((r.predicted_efficiency || 0) * 100)}%</td>
+        <td>${Math.round((r.resistance_risk || 0) * 100)}%</td>
+        <td>${Math.round((fut.response_probability || 0) * 100)}%</td>
+        <td>${Math.round((fut.progression_risk_12m || 0) * 100)}%</td>
+        <td>${r.tunisia_feasibility}</td>
+      </tr>
+    `;
+  }).join("");
+}
+
+function drawChart(timeline, visibleCount){
+  const canvas = document.getElementById("mainChart");
+  const ctx = canvas.getContext("2d");
+
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  const w = canvas.width;
+  const h = canvas.height;
+  const pad = 48;
+
+  ctx.strokeStyle = "#263a57";
+  ctx.lineWidth = 1;
+
+  ctx.beginPath();
+  ctx.moveTo(pad,pad);
+  ctx.lineTo(pad,h-pad);
+  ctx.lineTo(w-pad,h-pad);
+  ctx.stroke();
+
+  const data = timeline.slice(0, visibleCount || timeline.length);
+
+  const series = [
+    {key:"tumor_volume", label:"Volume tumoral", color:"#22d3ee"},
+    {key:"cell_viability", label:"Viabilité", color:"#22c55e"},
+    {key:"molecular_activity", label:"Activité EGFR", color:"#a855f7"},
+    {key:"resistance", label:"Résistance", color:"#ef4444", scale:100}
+  ];
+
+  function x(i){
+    return pad + i * ((w - 2*pad) / 11);
+  }
+
+  function y(v){
+    return h - pad - (v / 100) * (h - 2*pad);
+  }
+
+  ctx.font = "13px Arial";
+
+  series.forEach((s, idx) => {
+    ctx.strokeStyle = s.color;
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+
+    data.forEach((d,i) => {
+      let v = Number(d[s.key] || 0);
+      if(s.scale) v = v * s.scale;
+
+      if(i === 0) ctx.moveTo(x(i), y(v));
+      else ctx.lineTo(x(i), y(v));
+    });
+
+    ctx.stroke();
+
+    ctx.fillStyle = s.color;
+    ctx.fillText(s.label, pad + idx*180, 24);
+
+    data.forEach((d,i) => {
+      let v = Number(d[s.key] || 0);
+      if(s.scale) v = v * s.scale;
+      ctx.beginPath();
+      ctx.arc(x(i), y(v), 4, 0, Math.PI*2);
+      ctx.fill();
+    });
+  });
+
+  ctx.fillStyle = "#94a3b8";
+  ctx.font = "12px Arial";
+  for(let i=0;i<12;i++){
+    ctx.fillText(String(i+1), x(i)-3, h-20);
+  }
+
+  ctx.fillText("Mois", w - pad - 15, h - 18);
+}
+
+init().catch(err => {
+  alert("Erreur dashboard : " + err.message);
+});
+</script>
+
+
+
+
+<script id="patch-15b-evidence-layer">
+(function(){
+
+function safe(v, f="-"){
+  if(v === null || v === undefined || v === "" || Number.isNaN(v)) return f;
+  if(Array.isArray(v)) return v.length ? v.join(", ") : f;
+  return String(v);
+}
+
+function pct(v){
+  if(v === null || v === undefined || v === "" || Number.isNaN(v)) return "-";
+  let n = Number(v);
+  if(n <= 1) n *= 100;
+  return n.toFixed(0) + "%";
+}
+
+function pid(p, i=0){
+  return p.patient_id || p.global_patient_id || p.id || ("PATIENT_" + (i+1));
+}
+
+function row(a,b){
+  return `<div class="row"><span>${a}</span><b>${b}</b></div>`;
+}
+
+function findCard(words){
+  const titles = Array.from(document.querySelectorAll("h2,h3"));
+  for(const t of titles){
+    const txt = (t.textContent || "").toLowerCase();
+    if(words.some(w => txt.includes(w.toLowerCase()))){
+      return t.closest(".card") || t.parentElement;
+    }
+  }
+  return null;
+}
+
+function activePatient(patients){
+  if(window.current) return window.current;
+
+  const active = document.querySelector(".patient.active") || document.querySelector(".active");
+  const text = active ? active.textContent : "";
+
+  for(let i=0;i<patients.length;i++){
+    if(text.includes(pid(patients[i],i))) return patients[i];
+  }
+  return patients[0];
+}
+
+function evidenceStatusHTML(p){
+  const kg = p.knowledge_grounding || {};
+  const v15 = kg.high_trust_public_validation_15B || {};
+  const rule = (v15.matched_repaired_rules || [])[0] || {};
+  const best = p.best_treatment || {};
+
+  const score =
+    kg.public_high_trust_score_15B ??
+    v15.repaired_patient_public_trust_score ??
+    kg.public_high_trust_score ??
+    "";
+
+  const status =
+    kg.public_high_trust_status_15B ||
+    v15.repaired_patient_public_validation_status ||
+    kg.public_high_trust_status ||
+    "Evidence-grounded research ranking";
+
+  return `
+    <h2>Statut des preuves</h2>
+    ${row("Traitement priorisé", safe(best.drug))}
+    ${row("Statut high-trust", safe(status))}
+    ${row("Score public high-trust", pct(score))}
+    ${row("CIViC", safe(v15.civic_layer_status || rule.civic_exact_match_status))}
+    ${row("openFDA", safe(v15.openfda_layer_status || rule.openfda_exact_label_status))}
+    ${row("PubMed", safe(v15.pubmed_layer_status || rule.pubmed_status))}
+    ${row("ClinicalTrials", safe(rule.clinical_trials_status))}
+    ${row("cBioPortal", safe(rule.cbioportal_genomic_context_status || "PUBLIC_CBIOPORTAL_LUNG_COHORTS_FOUND"))}
+    ${row("OncoKB", safe(v15.oncokb_status || kg.oncokb_status || "PENDING_OFFICIAL_PRODUCTION_TOKEN"))}
+    ${row("Matched evidence", safe(kg.matched_evidence_count))}
+  `;
+}
+
+function knowledgeHTML(p){
+  const kg = p.knowledge_grounding || {};
+  const v15 = kg.high_trust_public_validation_15B || {};
+  const rule = (v15.matched_repaired_rules || [])[0] || {};
+
+  return `
+    <h2>Ancrage scientifique / Knowledge grounding</h2>
+    ${row("Mode", safe(kg.mode))}
+    ${row("Version logique", safe(kg.logic_correction_version))}
+    ${row("Patch résistance", safe(kg.final_resistance_patch_version))}
+    ${row("Version 15B", safe(v15.version))}
+    ${row("Rule support", safe(rule.repaired_rule_support_status))}
+    ${row("CIViC citations", safe(rule.civic_citations))}
+    ${row("PMIDs", safe(rule.pmids))}
+  `;
+}
+
+function evidenceTableHTML(p){
+  const kg = p.knowledge_grounding || {};
+  const v15 = kg.high_trust_public_validation_15B || {};
+  const best = p.best_treatment || {};
+  let rules = v15.matched_repaired_rules || [];
+
+  if(!rules.length && best.matched_evidence){
+    rules = best.matched_evidence.map(x => ({
+      alteration: x.alteration_group,
+      drug: x.drug,
+      repaired_rule_support_status: x.evidence_strength,
+      civic_exact_match_status: x.source_name,
+      openfda_exact_label_status: x.source_category,
+      pubmed_status: x.clinical_logic
+    }));
+  }
+
+  return `
+    <h2>Preuves associées au meilleur traitement</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Gène</th>
+          <th>Altération</th>
+          <th>Traitement</th>
+          <th>Niveau</th>
+          <th>CIViC / source</th>
+          <th>openFDA</th>
+          <th>PubMed</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${
+          rules.length ? rules.map(r => `
+            <tr>
+              <td>EGFR</td>
+              <td>${safe(r.alteration)}</td>
+              <td>${safe(r.drug || best.drug)}</td>
+              <td>${safe(r.repaired_rule_support_status)}</td>
+              <td>${safe(r.civic_exact_match_status || r.civic_citations)}</td>
+              <td>${safe(r.openfda_exact_label_status)}</td>
+              <td>${safe(r.pubmed_status || r.pmids)}</td>
+            </tr>
+          `).join("") :
+          `<tr><td colspan="7">Aucune preuve 15B détaillée trouvée pour ce patient.</td></tr>`
+        }
+      </tbody>
+    </table>
+  `;
+}
+
+async function apply15B(){
+  let patients = window.__patients15B;
+  if(!patients){
+    try{
+      patients = await fetch("/patients").then(r => r.json());
+      window.__patients15B = patients;
+    }catch(e){
+      console.error("15B evidence patch: cannot fetch patients", e);
+      return;
+    }
+  }
+
+  if(!patients || !patients.length) return;
+
+  const p = activePatient(patients);
+  if(!p) return;
+
+  let statusCard = findCard(["Statut des preuves", "Status after progression", "Evidence status"]);
+  if(statusCard) statusCard.innerHTML = evidenceStatusHTML(p);
+
+  let evidenceCard = findCard(["Preuves associées", "Evidence Layer", "Associated evidence"]);
+  if(evidenceCard) evidenceCard.innerHTML = evidenceTableHTML(p);
+
+  let knowledgeCard = findCard(["Knowledge grounding", "Ancrage scientifique"]);
+  if(!knowledgeCard){
+    const rankingCard = findCard(["Classement thérapeutique", "Treatment ranking"]);
+    if(rankingCard && !document.getElementById("knowledge-grounding-15b")){
+      const div = document.createElement("div");
+      div.className = "card";
+      div.id = "knowledge-grounding-15b";
+      rankingCard.insertAdjacentElement("afterend", div);
+      knowledgeCard = div;
+    }
+  }
+  if(knowledgeCard) knowledgeCard.innerHTML = knowledgeHTML(p);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  setTimeout(apply15B, 800);
+  setTimeout(apply15B, 1800);
+  setTimeout(apply15B, 3500);
+});
+
+document.addEventListener("click", () => setTimeout(apply15B, 300));
+document.addEventListener("change", () => setTimeout(apply15B, 300));
+
+})();
+</script>
+
+</body></html>

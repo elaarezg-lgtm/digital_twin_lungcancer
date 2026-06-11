@@ -1,0 +1,32 @@
+{
+  "patient_level_dataset_evidence": {
+    "label_en": "Patient-level dataset evidence",
+    "label_fr": "Preuve issue de données patient",
+    "color": "green",
+    "meaning": "Information derived from legally usable patient/sample-level data."
+  },
+  "knowledgebase_evidence": {
+    "label_en": "Knowledgebase evidence",
+    "label_fr": "Preuve issue d'une base de connaissance",
+    "color": "blue",
+    "meaning": "Information derived from curated evidence sources such as CIViC/CGI/DGIdb or literature."
+  },
+  "regional_prevalence_context": {
+    "label_en": "Regional prevalence context",
+    "label_fr": "Contexte de prévalence régionale",
+    "color": "orange",
+    "meaning": "Country/region frequency context, not patient-level training data."
+  },
+  "model_derived_proxy": {
+    "label_en": "Model-derived proxy",
+    "label_fr": "Proxy dérivé du modèle",
+    "color": "purple",
+    "meaning": "Internal approximation that must not be presented as clinically validated."
+  },
+  "pending_validation": {
+    "label_en": "Pending validation",
+    "label_fr": "Validation en attente",
+    "color": "red",
+    "meaning": "Source or output requires manual validation before being treated as reliable."
+  }
+}

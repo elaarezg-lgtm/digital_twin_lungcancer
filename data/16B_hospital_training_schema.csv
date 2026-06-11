@@ -1,0 +1,37 @@
+column,category,description,priority
+patient_id,identifier,Unique patient ID,required
+sample_id,identifier,Tumor sample ID,required
+source,metadata,"Dataset source: GENIE_BPC_NSCLC, TCGA, CPTAC, hospital, etc.",required
+institution,metadata,Institution or cohort source if available,recommended
+age,clinical_feature,Age at diagnosis or treatment start,required
+sex,clinical_feature,Sex,required
+stage,clinical_feature,Cancer stage,required
+histology,clinical_feature,LUAD / NSCLC subtype,required
+smoking_status,clinical_feature,Smoking history if available,recommended
+egfr_alteration,molecular_feature,Exact EGFR alteration,required
+egfr_group,molecular_feature,Grouped EGFR class,required
+tp53,molecular_feature,TP53 co-mutation flag,recommended
+stk11,molecular_feature,STK11 co-mutation flag,recommended
+keap1,molecular_feature,KEAP1 co-mutation flag,recommended
+met,molecular_feature,MET alteration/amplification/bypass,recommended
+kras,molecular_feature,KRAS alteration,recommended
+pik3ca,molecular_feature,PIK3CA alteration,recommended
+braf,molecular_feature,BRAF alteration,recommended
+tmb,molecular_feature,Tumor mutational burden if available,optional
+treatment_received,treatment_label,Actual drug/regimen received,required
+treatment_class,treatment_label,EGFR TKI / chemotherapy / antibody / immunotherapy / other,required
+line_of_therapy,treatment_label,1L / 2L / later line,required
+treatment_start_date_or_index,treatment_label,Relative/index date allowed,recommended
+treatment_end_date_or_duration,treatment_label,Treatment duration if available,recommended
+best_response,outcome_label,RECIST/clinical response: CR/PR/SD/PD if available,high_value
+objective_response_binary,outcome_label,"CR/PR = 1, SD/PD = 0",high_value
+clinical_benefit_binary,outcome_label,"CR/PR/SD = 1, PD = 0 depending definition",high_value
+pfs_months,outcome_label,Progression-free survival,high_value
+pfs_event,outcome_label,Progression/death event indicator,high_value
+os_months,outcome_label,Overall survival,high_value
+os_event,outcome_label,Death event indicator,high_value
+progression_site,outcome_label,Local/distant/CNS if available,optional
+acquired_resistance_alteration,outcome_label,Resistance alteration at progression,optional
+evidence_score,evidence_feature,CIViC/openFDA/OncoKB/public evidence score,recommended
+data_quality_score,quality,Missingness/source/label quality score,required
+train_valid_test_split,modeling,Split assignment without patient leakage,required

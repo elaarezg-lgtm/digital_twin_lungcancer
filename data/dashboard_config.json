@@ -1,0 +1,25 @@
+{
+  "active_dataset": "dashboard_simulation_patients_verified.json",
+  "source_dataset": "dashboard_simulation_patients_global.json",
+  "model_version": "EGFR_Global_TrustedEvidenceFusion_v1_research_to_decision_support_goal",
+  "created_at": "2026-06-04T13:22:19.667397",
+  "clinical_use_statement": "Research prototype under development. The long-term objective is to become a reliable, evidence-grounded oncology decision-support system after rigorous clinical, biological, statistical, and external validation. Current outputs must not be used as standalone medical decisions.",
+  "decision_support_goal": "Designed toward reliable EGFR-mutated NSCLC/LUAD precision-oncology decision support through patient-level data, curated evidence, pathway interpretation, and transparent audits.",
+  "dashboard_labels": {
+    "patient_data": "Patient-level dataset evidence",
+    "treatment_logic": "Knowledgebase/manual-curated evidence pending final verification",
+    "pathway": "Mutation-derived proxy pending true CPTAC phosphoproteomics validation",
+    "simulation": "Research visualization proxy"
+  },
+  "validation_files": {
+    "validation_report": "/content/drive/MyDrive/desktop_app/data/audit/13_dashboard_global_validation_report.csv",
+    "safety_audit": "/content/drive/MyDrive/desktop_app/data/audit/13_dashboard_global_safety_audit.csv"
+  },
+  "patient_count": 75,
+  "best_treatment_distribution": {
+    "Osimertinib": 48,
+    "Platinum-based Chemotherapy": 14,
+    "Afatinib": 7,
+    "Amivantamab": 6
+  }
+}

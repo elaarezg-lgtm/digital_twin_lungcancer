@@ -1,0 +1,12 @@
+{
+  "created_at": "2026-06-08T02:16:42.248633",
+  "public_cbioportal_survival_rows": 8788,
+  "rows_with_os_months": 8028,
+  "rows_with_pfs_months": 2182,
+  "rows_with_treatment_field": 0,
+  "rows_with_response_field": 249,
+  "can_train_public_os_baseline": true,
+  "can_train_public_pfs_baseline": true,
+  "can_train_treatment_response_model": false,
+  "scientific_decision": "Proceed only with public survival/prognosis baseline. Do not claim treatment-response prediction."
+}

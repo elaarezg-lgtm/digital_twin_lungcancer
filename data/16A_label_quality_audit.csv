@@ -1,0 +1,7 @@
+label,available_patients,total_patients,availability_pct,hospital_training_ready,minimum_research_training_ready,notes
+real_treatment_received,0,75,0.0,False,False,Current dashboard recommendation is not the same as real received therapy.
+real_response_label,0,75,0.0,False,False,Need CR/PR/SD/PD or RECIST response from real treatment records.
+real_pfs_label,0,75,0.0,False,False,Need progression-free survival months/time-to-event.
+real_overall_survival_months,34,75,45.33,False,False,Can support survival modeling only if enough real OS values exist.
+real_survival_status,35,75,46.67,False,False,Vital status alone is weak without follow-up time.
+any_real_outcome_label,35,75,46.67,False,False,Any real outcome label available from source data.

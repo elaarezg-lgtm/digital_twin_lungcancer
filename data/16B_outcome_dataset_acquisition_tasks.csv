@@ -1,0 +1,5 @@
+priority,dataset,why_needed,action,expected_gain
+1,AACR GENIE BPC NSCLC v2.0-public,Real-world NSCLC clinicogenomic dataset with treatment exposure and outcomes.,"Create Synapse account, accept terms, obtain PAT, download/pull NSCLC v2.0-public.",Main hospital-grade outcome-labeled training foundation.
+2,Institutional retrospective cohort,Local hospital validation and Tunisian context.,Prepare ethics/data request for de-identified EGFR NSCLC cases with treatment and outcomes.,External/local validation and implementation relevance.
+3,cBioPortal studies with clinical treatment/outcome fields,Additional public validation cohorts.,"Search cBioPortal clinical attributes for treatment, response, PFS, OS fields.","Extra external validation, but often incomplete treatment labels."
+4,Curated literature cohort table,Regional and drug-specific evidence context where patient-level data is unavailable.,Extract aggregate cohort data separately. Do not mix aggregate data with patient-level model training.,"Contextual evidence, not primary ML training."

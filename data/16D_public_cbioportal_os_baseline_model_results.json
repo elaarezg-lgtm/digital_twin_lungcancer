@@ -1,0 +1,18 @@
+{
+  "model_trained": true,
+  "model_type": "Temporary public cBioPortal OS regression baseline",
+  "rows_used": 8028,
+  "train_rows": 6021,
+  "test_rows": 2007,
+  "target": "os_months",
+  "features": [
+    "study_id",
+    "age",
+    "sex",
+    "stage"
+  ],
+  "mae_months": 18.3936,
+  "r2": 0.034,
+  "clinical_warning": "Public prognosis baseline only. Not EGFR treatment-response prediction. Not hospital-ready.",
+  "prediction_file": "/content/drive/MyDrive/desktop_app/data/public_cbioportal_training/16D_public_cbioportal_os_baseline_predictions.csv"
+}

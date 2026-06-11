@@ -1,0 +1,6 @@
+target_name,type,positive_class,negative_class,minimum_rows_for_research,minimum_rows_for_hospital_pilot,required_fields,main_metrics
+objective_response_binary,classification,CR or PR,SD or PD,300,1000,"treatment_received, best_response, EGFR alteration, stage, line_of_therapy","AUROC, AUPRC, sensitivity, specificity, F1, calibration, Brier score"
+clinical_benefit_binary,classification,CR or PR or durable SD,PD,300,1000,"treatment_received, best_response or disease control, follow-up duration","AUROC, AUPRC, F1, calibration"
+pfs_months_plus_event,survival,progression/death event,censored,300,1000,"treatment_received, treatment start/index, progression date or follow-up, event flag","C-index, time-dependent AUC, integrated Brier score, KM separation"
+os_months_plus_event,survival,death event,censored,300,1000,"treatment_received, index date, death/follow-up, event flag","C-index, time-dependent AUC, integrated Brier score"
+resistance_emergence,classification/time-to-event,documented acquired resistance alteration or progression mechanism,no documented resistance within follow-up,300,1000,"baseline EGFR, treatment_received, progression, post-progression molecular data","AUROC, AUPRC, C-index if time-to-event"

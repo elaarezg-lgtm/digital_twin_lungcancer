@@ -1,0 +1,12 @@
+output_name,path,rows,purpose
+base_global_dataset_registry,/content/drive/MyDrive/desktop_app/data/registry/base_global_dataset_registry.csv,8.0,Base trusted source registry.
+country_literature_search_plan,/content/drive/MyDrive/desktop_app/data/registry/country_literature_search_plan.csv,51.0,Search plan for global/country literature.
+country_literature_candidates,/content/drive/MyDrive/desktop_app/data/registry/country_literature_candidates_europepmc.csv,408.0,Europe PMC candidate papers for manual review.
+country_literature_review_table,/content/drive/MyDrive/desktop_app/data/registry/country_literature_review_table.csv,243.0,Deduplicated/scored literature candidates.
+country_prevalence_context_template,/content/drive/MyDrive/desktop_app/data/registry/country_prevalence_context_template.csv,17.0,Manual curation template for country EGFR prevalence.
+manual_patient_level_upload_schema,/content/drive/MyDrive/desktop_app/data/policy/manual_patient_level_upload_schema.csv,17.0,Schema for legally obtained patient-level country data.
+trusted_source_filter,/content/drive/MyDrive/desktop_app/data/registry/trusted_source_filter.csv,217.0,Final source-use permissions and trust labels.
+source_quality_scores,/content/drive/MyDrive/desktop_app/data/registry/source_quality_scores.csv,217.0,Numeric source quality prioritization.
+model_data_use_policy,/content/drive/MyDrive/desktop_app/data/policy/model_data_use_policy.md,,Scientific policy for all future data/model/dashboard use.
+dashboard_evidence_badge_rules,/content/drive/MyDrive/desktop_app/data/policy/dashboard_evidence_badge_rules.json,,Badge rules for dashboard reliability labels.
+source_trust_rules,/content/drive/MyDrive/desktop_app/data/policy/source_trust_rules.json,,Machine-readable source trust categories.

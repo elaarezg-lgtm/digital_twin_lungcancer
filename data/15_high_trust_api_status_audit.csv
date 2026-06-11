@@ -1,0 +1,5 @@
+api,attempts,successful_attempts,failed_attempts,status
+openFDA,19,18,1,PASS
+ClinicalTrials.gov,16,16,0,PASS
+cBioPortal,1,1,0,PASS
+CIViC,11,11,0,PASS

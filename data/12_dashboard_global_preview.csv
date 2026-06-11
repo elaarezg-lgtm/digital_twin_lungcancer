@@ -1,0 +1,76 @@
+patient_id,source,egfr,best_drug,score,evidence,pathway_label
+CPTAC__luad_cptac_2020__C3L-00093,luad_cptac_2020,EGFR L858R; Other EGFR alteration,Osimertinib,0.4995,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3L-00368,luad_cptac_2020,EGFR G719X; EGFR S768I,Afatinib,0.4552,2,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3L-00510,luad_cptac_2020,EGFR L858R; Other EGFR alteration,Osimertinib,0.5009,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3L-00604,luad_cptac_2020,EGFR exon 19 deletion,Osimertinib,0.4338,9,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3L-00893,luad_cptac_2020,EGFR exon 19 deletion,Osimertinib,0.5639,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3L-00913,luad_cptac_2020,Other EGFR alteration,Platinum-based Chemotherapy,0.1865,5,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3L-01330,luad_cptac_2020,EGFR L858R,Osimertinib,0.5646,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3L-02219,luad_cptac_2020,EGFR L858R,Osimertinib,0.5638,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3N-00167,luad_cptac_2020,EGFR exon 19 deletion,Osimertinib,0.5261,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3N-00199,luad_cptac_2020,EGFR L858R,Osimertinib,0.5235,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3N-00203,luad_cptac_2020,Other EGFR alteration,Platinum-based Chemotherapy,0.1897,0,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3N-00223,luad_cptac_2020,EGFR L858R; Other EGFR alteration,Osimertinib,0.5652,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3N-00546,luad_cptac_2020,EGFR G719X; EGFR S768I,Afatinib,0.4158,2,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3N-00550,luad_cptac_2020,Other EGFR alteration,Platinum-based Chemotherapy,0.1928,0,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3N-00559,luad_cptac_2020,EGFR exon 19 deletion,Osimertinib,0.5256,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3N-00574,luad_cptac_2020,EGFR exon 19 deletion,Osimertinib,0.5254,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3N-00579,luad_cptac_2020,EGFR L858R,Osimertinib,0.5253,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3N-01021,luad_cptac_2020,EGFR G719X; EGFR L861Q,Afatinib,0.4568,2,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3N-01024,luad_cptac_2020,EGFR exon 19 deletion,Osimertinib,0.5254,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3N-01413,luad_cptac_2020,EGFR exon 19 deletion,Osimertinib,0.5258,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3N-01415,luad_cptac_2020,Other EGFR alteration,Platinum-based Chemotherapy,0.1895,0,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3N-01416,luad_cptac_2020,EGFR exon 19 deletion,Osimertinib,0.5639,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3N-01799,luad_cptac_2020,EGFR L858R,Osimertinib,0.5646,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3N-02002,luad_cptac_2020,EGFR L858R,Osimertinib,0.5648,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3N-02067,luad_cptac_2020,EGFR exon 19 deletion; Other EGFR alteration,Osimertinib,0.5262,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3N-02087,luad_cptac_2020,EGFR exon 20 insertion; Other EGFR alteration,Amivantamab,0.4609,2,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3N-02145,luad_cptac_2020,EGFR exon 19 deletion,Osimertinib,0.5653,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3N-02155,luad_cptac_2020,EGFR L858R,Osimertinib,0.5632,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3N-02158,luad_cptac_2020,EGFR exon 19 deletion,Osimertinib,0.5648,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3N-02379,luad_cptac_2020,EGFR L858R,Osimertinib,0.5254,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3N-02380,luad_cptac_2020,EGFR exon 19 deletion,Osimertinib,0.5649,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3N-02421,luad_cptac_2020,EGFR exon 20 insertion; Other EGFR alteration,Amivantamab,0.4981,2,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3N-02424,luad_cptac_2020,EGFR L858R,Osimertinib,0.5254,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3N-02433,luad_cptac_2020,EGFR L858R,Osimertinib,0.5646,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3N-02529,luad_cptac_2020,EGFR L858R,Osimertinib,0.5246,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3N-02572,luad_cptac_2020,EGFR L858R,Osimertinib,0.5258,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3N-02582,luad_cptac_2020,EGFR exon 19 deletion,Osimertinib,0.5037,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__C3N-02729,luad_cptac_2020,EGFR L858R,Osimertinib,0.5652,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__X11LU013,luad_cptac_2020,EGFR exon 20 insertion; Other EGFR alteration,Amivantamab,0.4605,2,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+CPTAC__luad_cptac_2020__X11LU016,luad_cptac_2020,EGFR G719X; EGFR S768I,Afatinib,0.2829,7,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-05-4382,luad_tcga,Other EGFR alteration,Platinum-based Chemotherapy,0.1881,0,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-05-4402,luad_tcga,EGFR exon 19 deletion,Osimertinib,0.524,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-05-4410,luad_tcga,Other EGFR alteration,Platinum-based Chemotherapy,0.1884,0,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-05-5423,luad_tcga,EGFR L861Q; Other EGFR alteration,Afatinib,0.4156,1,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-38-4627,luad_tcga,EGFR L858R; Other EGFR alteration,Osimertinib,0.565,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-38-4628,luad_tcga,EGFR exon 19 deletion,Osimertinib,0.5632,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-38-6178,luad_tcga,EGFR exon 19 deletion,Osimertinib,0.5249,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-44-2661,luad_tcga,EGFR exon 19 deletion,Osimertinib,0.5643,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-44-6147,luad_tcga,EGFR S768I; Other EGFR alteration,Afatinib,0.4151,1,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-49-4490,luad_tcga,EGFR L858R,Osimertinib,0.525,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-49-4494,luad_tcga,EGFR L858R; EGFR T790M,Osimertinib,0.5507,7,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-49-4501,luad_tcga,EGFR exon 19 deletion,Osimertinib,0.5638,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-50-5933,luad_tcga,Other EGFR alteration,Platinum-based Chemotherapy,0.1804,10,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-50-5944,luad_tcga,EGFR L858R,Osimertinib,0.525,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-50-6595,luad_tcga,EGFR G719X; EGFR S768I,Afatinib,0.416,2,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-50-6673,luad_tcga,EGFR exon 20 insertion,Amivantamab,0.4604,2,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-55-6980,luad_tcga,EGFR exon 20 insertion,Amivantamab,0.4989,2,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-55-6981,luad_tcga,EGFR exon 19 deletion,Osimertinib,0.5642,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-55-7573,luad_tcga,EGFR exon 19 deletion; Other EGFR alteration,Osimertinib,0.5254,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-64-1681,luad_tcga,EGFR L858R,Osimertinib,0.5248,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-67-3771,luad_tcga,Other EGFR alteration,Platinum-based Chemotherapy,0.1635,0,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-67-3772,luad_tcga,EGFR L858R,Osimertinib,0.5638,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-67-6217,luad_tcga,EGFR L858R,Osimertinib,0.5628,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-69-7760,luad_tcga,EGFR exon 20 insertion,Amivantamab,0.4597,2,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-69-7765,luad_tcga,Other EGFR alteration,Platinum-based Chemotherapy,0.1892,0,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-75-6207,luad_tcga,EGFR exon 19 deletion,Osimertinib,0.5251,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-75-6212,luad_tcga,EGFR exon 19 deletion,Osimertinib,0.5653,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-75-7025,luad_tcga,EGFR exon 19 deletion,Osimertinib,0.5648,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-78-7147,luad_tcga,EGFR L861Q; EGFR exon 19 deletion; Other EGFR alteration,Osimertinib,0.523,5,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-78-7155,luad_tcga,Other EGFR alteration,Platinum-based Chemotherapy,0.1881,0,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-78-7158,luad_tcga,Other EGFR alteration,Platinum-based Chemotherapy,0.2025,0,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-91-6835,luad_tcga,EGFR L858R,Osimertinib,0.5636,4,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-91-6847,luad_tcga,EGFR L861Q,Platinum-based Chemotherapy,0.1866,6,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-95-7039,luad_tcga,Other EGFR alteration,Platinum-based Chemotherapy,0.1813,10,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation
+TCGA__luad_tcga__TCGA-95-7947,luad_tcga,Other EGFR alteration,Platinum-based Chemotherapy,0.1614,5,Mutation-derived pathway proxy pending true CPTAC phosphoproteomics validation

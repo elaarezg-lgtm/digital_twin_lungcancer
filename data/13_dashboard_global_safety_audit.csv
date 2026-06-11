@@ -1,0 +1,7 @@
+check,value,status,notes
+patients_count,75,PASS,Global patient JSON must contain patients.
+required_keys,0,PASS,Every patient must contain required dashboard fields.
+best_treatment_available,0,PASS,Every patient should have a best treatment ranking.
+timeline_available,0,PASS,Every patient should have simulation timeline.
+age_range,0,PASS,Age should be normal human age or unknown.
+evidence_count_present,0,PASS,Matched evidence count should exist for transparency.

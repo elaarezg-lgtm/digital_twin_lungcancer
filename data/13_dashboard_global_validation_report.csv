@@ -1,0 +1,76 @@
+patient_id,missing_top_keys,has_clinical,has_molecular,has_best_treatment,has_ranking,has_timeline,has_pathway_state,has_microenvironment,has_knowledge_grounding,age,age_display,egfr,best_drug,best_score,matched_evidence_count,model_version
+CPTAC__luad_cptac_2020__C3L-00093,,True,True,True,True,True,True,True,True,66.0,66 years,EGFR L858R; Other EGFR alteration,Osimertinib,0.4995,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3L-00368,,True,True,True,True,True,True,True,True,67.0,67 years,EGFR G719X; EGFR S768I,Afatinib,0.4552,2,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3L-00510,,True,True,True,True,True,True,True,True,80.0,80 years,EGFR L858R; Other EGFR alteration,Osimertinib,0.5009,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3L-00604,,True,True,True,True,True,True,True,True,61.0,61 years,EGFR exon 19 deletion,Osimertinib,0.4338,9,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3L-00893,,True,True,True,True,True,True,True,True,71.0,71 years,EGFR exon 19 deletion,Osimertinib,0.5639,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3L-00913,,True,True,True,True,True,True,True,True,66.0,66 years,Other EGFR alteration,Platinum-based Chemotherapy,0.1865,5,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3L-01330,,True,True,True,True,True,True,True,True,68.0,68 years,EGFR L858R,Osimertinib,0.5646,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3L-02219,,True,True,True,True,True,True,True,True,77.0,77 years,EGFR L858R,Osimertinib,0.5638,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3N-00167,,True,True,True,True,True,True,True,True,64.0,64 years,EGFR exon 19 deletion,Osimertinib,0.5261,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3N-00199,,True,True,True,True,True,True,True,True,65.0,65 years,EGFR L858R,Osimertinib,0.5235,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3N-00203,,True,True,True,True,True,True,True,True,72.0,72 years,Other EGFR alteration,Platinum-based Chemotherapy,0.1897,0,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3N-00223,,True,True,True,True,True,True,True,True,69.0,69 years,EGFR L858R; Other EGFR alteration,Osimertinib,0.5652,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3N-00546,,True,True,True,True,True,True,True,True,58.0,58 years,EGFR G719X; EGFR S768I,Afatinib,0.4158,2,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3N-00550,,True,True,True,True,True,True,True,True,52.0,52 years,Other EGFR alteration,Platinum-based Chemotherapy,0.1928,0,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3N-00559,,True,True,True,True,True,True,True,True,55.0,55 years,EGFR exon 19 deletion,Osimertinib,0.5256,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3N-00574,,True,True,True,True,True,True,True,True,40.0,40 years,EGFR exon 19 deletion,Osimertinib,0.5254,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3N-00579,,True,True,True,True,True,True,True,True,67.0,67 years,EGFR L858R,Osimertinib,0.5253,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3N-01021,,True,True,True,True,True,True,True,True,44.0,44 years,EGFR G719X; EGFR L861Q,Afatinib,0.4568,2,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3N-01024,,True,True,True,True,True,True,True,True,66.0,66 years,EGFR exon 19 deletion,Osimertinib,0.5254,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3N-01413,,True,True,True,True,True,True,True,True,62.0,62 years,EGFR exon 19 deletion,Osimertinib,0.5258,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3N-01415,,True,True,True,True,True,True,True,True,72.0,72 years,Other EGFR alteration,Platinum-based Chemotherapy,0.1895,0,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3N-01416,,True,True,True,True,True,True,True,True,67.0,67 years,EGFR exon 19 deletion,Osimertinib,0.5639,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3N-01799,,True,True,True,True,True,True,True,True,81.0,81 years,EGFR L858R,Osimertinib,0.5646,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3N-02002,,True,True,True,True,True,True,True,True,76.0,76 years,EGFR L858R,Osimertinib,0.5648,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3N-02067,,True,True,True,True,True,True,True,True,37.0,37 years,EGFR exon 19 deletion; Other EGFR alteration,Osimertinib,0.5262,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3N-02087,,True,True,True,True,True,True,True,True,61.0,61 years,EGFR exon 20 insertion; Other EGFR alteration,Amivantamab,0.4609,2,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3N-02145,,True,True,True,True,True,True,True,True,68.0,68 years,EGFR exon 19 deletion,Osimertinib,0.5653,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3N-02155,,True,True,True,True,True,True,True,True,45.0,45 years,EGFR L858R,Osimertinib,0.5632,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3N-02158,,True,True,True,True,True,True,True,True,54.0,54 years,EGFR exon 19 deletion,Osimertinib,0.5648,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3N-02379,,True,True,True,True,True,True,True,True,57.0,57 years,EGFR L858R,Osimertinib,0.5254,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3N-02380,,True,True,True,True,True,True,True,True,56.0,56 years,EGFR exon 19 deletion,Osimertinib,0.5649,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3N-02421,,True,True,True,True,True,True,True,True,58.0,58 years,EGFR exon 20 insertion; Other EGFR alteration,Amivantamab,0.4981,2,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3N-02424,,True,True,True,True,True,True,True,True,64.0,64 years,EGFR L858R,Osimertinib,0.5254,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3N-02433,,True,True,True,True,True,True,True,True,68.0,68 years,EGFR L858R,Osimertinib,0.5646,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3N-02529,,True,True,True,True,True,True,True,True,79.0,79 years,EGFR L858R,Osimertinib,0.5246,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3N-02572,,True,True,True,True,True,True,True,True,49.0,49 years,EGFR L858R,Osimertinib,0.5258,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3N-02582,,True,True,True,True,True,True,True,True,77.0,77 years,EGFR exon 19 deletion,Osimertinib,0.5037,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__C3N-02729,,True,True,True,True,True,True,True,True,45.0,45 years,EGFR L858R,Osimertinib,0.5652,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__X11LU013,,True,True,True,True,True,True,True,True,59.0,59 years,EGFR exon 20 insertion; Other EGFR alteration,Amivantamab,0.4605,2,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+CPTAC__luad_cptac_2020__X11LU016,,True,True,True,True,True,True,True,True,62.0,62 years,EGFR G719X; EGFR S768I,Afatinib,0.2829,7,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-05-4382,,True,True,True,True,True,True,True,True,68.0,68 years,Other EGFR alteration,Platinum-based Chemotherapy,0.1881,0,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-05-4402,,True,True,True,True,True,True,True,True,57.0,57 years,EGFR exon 19 deletion,Osimertinib,0.524,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-05-4410,,True,True,True,True,True,True,True,True,62.0,62 years,Other EGFR alteration,Platinum-based Chemotherapy,0.1884,0,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-05-5423,,True,True,True,True,True,True,True,True,65.0,65 years,EGFR L861Q; Other EGFR alteration,Afatinib,0.4156,1,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-38-4627,,True,True,True,True,True,True,True,True,64.0,64 years,EGFR L858R; Other EGFR alteration,Osimertinib,0.565,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-38-4628,,True,True,True,True,True,True,True,True,65.0,65 years,EGFR exon 19 deletion,Osimertinib,0.5632,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-38-6178,,True,True,True,True,True,True,True,True,70.0,70 years,EGFR exon 19 deletion,Osimertinib,0.5249,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-44-2661,,True,True,True,True,True,True,True,True,69.0,69 years,EGFR exon 19 deletion,Osimertinib,0.5643,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-44-6147,,True,True,True,True,True,True,True,True,67.0,67 years,EGFR S768I; Other EGFR alteration,Afatinib,0.4151,1,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-49-4490,,True,True,True,True,True,True,True,True,45.0,45 years,EGFR L858R,Osimertinib,0.525,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-49-4494,,True,True,True,True,True,True,True,True,77.0,77 years,EGFR L858R; EGFR T790M,Osimertinib,0.5507,7,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-49-4501,,True,True,True,True,True,True,True,True,67.0,67 years,EGFR exon 19 deletion,Osimertinib,0.5638,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-50-5933,,True,True,True,True,True,True,True,True,72.0,72 years,Other EGFR alteration,Platinum-based Chemotherapy,0.1804,10,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-50-5944,,True,True,True,True,True,True,True,True,69.0,69 years,EGFR L858R,Osimertinib,0.525,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-50-6595,,True,True,True,True,True,True,True,True,74.0,74 years,EGFR G719X; EGFR S768I,Afatinib,0.416,2,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-50-6673,,True,True,True,True,True,True,True,True,84.0,84 years,EGFR exon 20 insertion,Amivantamab,0.4604,2,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-55-6980,,True,True,True,True,True,True,True,True,56.0,56 years,EGFR exon 20 insertion,Amivantamab,0.4989,2,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-55-6981,,True,True,True,True,True,True,True,True,53.0,53 years,EGFR exon 19 deletion,Osimertinib,0.5642,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-55-7573,,True,True,True,True,True,True,True,True,72.0,72 years,EGFR exon 19 deletion; Other EGFR alteration,Osimertinib,0.5254,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-64-1681,,True,True,True,True,True,True,True,True,61.0,61 years,EGFR L858R,Osimertinib,0.5248,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-67-3771,,True,True,True,True,True,True,True,True,77.0,77 years,Other EGFR alteration,Platinum-based Chemotherapy,0.1635,0,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-67-3772,,True,True,True,True,True,True,True,True,82.0,82 years,EGFR L858R,Osimertinib,0.5638,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-67-6217,,True,True,True,True,True,True,True,True,73.0,73 years,EGFR L858R,Osimertinib,0.5628,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-69-7760,,True,True,True,True,True,True,True,True,73.0,73 years,EGFR exon 20 insertion,Amivantamab,0.4597,2,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-69-7765,,True,True,True,True,True,True,True,True,56.0,56 years,Other EGFR alteration,Platinum-based Chemotherapy,0.1892,0,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-75-6207,,True,True,True,True,True,True,True,True,,Unknown,EGFR exon 19 deletion,Osimertinib,0.5251,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-75-6212,,True,True,True,True,True,True,True,True,,Unknown,EGFR exon 19 deletion,Osimertinib,0.5653,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-75-7025,,True,True,True,True,True,True,True,True,,Unknown,EGFR exon 19 deletion,Osimertinib,0.5648,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-78-7147,,True,True,True,True,True,True,True,True,67.0,67 years,EGFR L861Q; EGFR exon 19 deletion; Other EGFR alteration,Osimertinib,0.523,5,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-78-7155,,True,True,True,True,True,True,True,True,68.0,68 years,Other EGFR alteration,Platinum-based Chemotherapy,0.1881,0,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-78-7158,,True,True,True,True,True,True,True,True,59.0,59 years,Other EGFR alteration,Platinum-based Chemotherapy,0.2025,0,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-91-6835,,True,True,True,True,True,True,True,True,81.0,81 years,EGFR L858R,Osimertinib,0.5636,4,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-91-6847,,True,True,True,True,True,True,True,True,62.0,62 years,EGFR L861Q,Platinum-based Chemotherapy,0.1866,6,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-95-7039,,True,True,True,True,True,True,True,True,54.0,54 years,Other EGFR alteration,Platinum-based Chemotherapy,0.1813,10,EGFR_Global_TrustedEvidenceFusion_v1_research_only
+TCGA__luad_tcga__TCGA-95-7947,,True,True,True,True,True,True,True,True,67.0,67 years,Other EGFR alteration,Platinum-based Chemotherapy,0.1614,5,EGFR_Global_TrustedEvidenceFusion_v1_research_only

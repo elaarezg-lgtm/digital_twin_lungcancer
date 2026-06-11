@@ -1,0 +1,22 @@
+{
+  "created_at": "2026-06-07T13:38:04.551491",
+  "model_version": "EGFR_Global_TrustedEvidenceFusion_v1_15_high_trust_public_validation",
+  "patients": 75,
+  "technical_functionality_score_0_10": 8.5,
+  "internal_consistency_score_0_10": 9.0,
+  "scientific_traceability_score_0_10": 7.85,
+  "clinical_readiness_score_0_10": 5.0,
+  "global_prototype_score_0_10": 7.73,
+  "average_patient_public_trust_score_0_1": 0.7834,
+  "high_trust_apis_used": [
+    "CIViC",
+    "openFDA drug labels",
+    "cBioPortal",
+    "ClinicalTrials.gov API v2"
+  ],
+  "excluded_from_high_trust_scoring": {
+    "DGIdb": "Excluded because drug-gene interaction support is not standalone clinical actionability.",
+    "OncoKB": "Full therapeutic validation pending approved production API token."
+  },
+  "interpretation": "This public evidence layer improves traceability and moves the prototype closer to a defensible 8/10 research-grade system. It does not yet establish clinical prediction accuracy because true treatment response/outcome validation is still required."
+}

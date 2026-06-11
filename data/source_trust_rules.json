@@ -1,0 +1,70 @@
+{
+  "TRAINABLE_PATIENT_LEVEL": {
+    "meaning": "Patient/sample-level data with usable clinical or molecular fields.",
+    "allowed_for_training": true,
+    "allowed_for_dashboard": true,
+    "allowed_for_regional_context": true,
+    "examples": [
+      "TCGA",
+      "CPTAC",
+      "cBioPortal downloadable patient-level studies",
+      "legally accessed GENIE"
+    ]
+  },
+  "KNOWLEDGE_EVIDENCE": {
+    "meaning": "Curated evidence knowledgebase or guideline/trial evidence. Not patient training data.",
+    "allowed_for_training": false,
+    "allowed_for_dashboard": true,
+    "allowed_for_regional_context": true,
+    "examples": [
+      "CIViC",
+      "CGI",
+      "DGIdb",
+      "FDA/EMA labels",
+      "guidelines",
+      "peer-reviewed treatment trials"
+    ]
+  },
+  "REGIONAL_PREVALENCE_CONTEXT": {
+    "meaning": "Country/region-level EGFR prevalence or cohort summary without downloadable patient-level rows.",
+    "allowed_for_training": false,
+    "allowed_for_dashboard": true,
+    "allowed_for_regional_context": true,
+    "examples": [
+      "Morocco EGFR frequency paper",
+      "Tunisia regional cohort paper",
+      "Japan EGFR prevalence paper"
+    ]
+  },
+  "CONTROLLED_ACCESS_REQUIRED": {
+    "meaning": "Potentially valuable source but cannot be used until official access/terms are completed.",
+    "allowed_for_training": false,
+    "allowed_for_dashboard": false,
+    "allowed_for_regional_context": false,
+    "examples": [
+      "GENIE controlled package",
+      "restricted national biobank",
+      "controlled genomic repository"
+    ]
+  },
+  "DO_NOT_USE": {
+    "meaning": "No reliable source, unclear legality, non-traceable, duplicate/fabricated, or unsupported data.",
+    "allowed_for_training": false,
+    "allowed_for_dashboard": false,
+    "allowed_for_regional_context": false,
+    "examples": [
+      "untraceable CSV",
+      "screenscraped restricted data",
+      "AI-generated patients pretending to be real"
+    ]
+  },
+  "PROXY_PENDING_VALIDATION": {
+    "meaning": "Model-derived or rule-derived proxy clearly labeled as non-clinically validated.",
+    "allowed_for_training": false,
+    "allowed_for_dashboard": true,
+    "allowed_for_regional_context": false,
+    "examples": [
+      "mutation-derived pathway proxy pending CPTAC phosphoproteomics validation"
+    ]
+  }
+}

@@ -8,5 +8,37 @@ node_modules/
 Thumbs.db
 *.log
 *.tar.gz
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
 
+# Backups / local restore scripts
+BACKUP_*/
+RESTORE_*/
+EGFR_RESTORE_TEMP/
+*.bak
+
+# Large raw data
+data/Twin_Predictive_Final.csv
+*.zip
+
+# Videos
+*.mp4
+*.avi
+*.mov
+
+# Unity generated/cache
+Library/
+Temp/
+Obj/
+Build/
+Builds/
+Logs/
+UserSettings/
+
+# Local env
+.env
+.venv/
+venv/
 

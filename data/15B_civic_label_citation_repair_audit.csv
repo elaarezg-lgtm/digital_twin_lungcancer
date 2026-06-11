@@ -1,0 +1,6 @@
+check,ok,rows,status,notes
+CIViC normalized EGFR lung rows,True,266,PASS,CIViC release/API evidence retrieved and normalized.
+CIViC exact rule matches,True,8,PASS,Exact alteration-drug CIViC matches found.
+openFDA exact rule matches,True,10,PASS,FDA label support found for one or more rule pairs.
+PubMed citation context matches,True,10,PASS,PubMed citation context found for one or more rule pairs.
+Global prototype score target,True,1,PASS,Current score 8.0/10.

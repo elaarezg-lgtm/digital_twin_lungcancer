@@ -1,0 +1,8 @@
+audit,rows,pass_count,warn_or_review_count,fail_count,status
+basic_output_completeness,75,75,0,0,PASS
+alteration_treatment_consistency,75,61,14,0,REVIEW
+resistance_logic,75,69,6,0,REVIEW
+timeline_values,975,975,0,0,PASS
+pathway_values,75,75,0,0,PASS
+evidence_labels,75,75,0,0,PASS
+patient_level_error_report,75,60,15,0,REVIEW

@@ -1,1008 +1,1245 @@
+
 <!DOCTYPE html>
-<!-- saved from url=(0078)https://8010-m-s-kkb-usw3b0-9u19dv6y7qeg-b.us-west3-0.prod.colab.dev/dashboard -->
-<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EGFR Lung Cancer Digital Twin</title>
 
-<title>EGFR Lung Cancer Digital Twin</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<style>
-:root{
-  --bg:#07111f;
-  --panel:#0f1b2d;
-  --panel2:#111f34;
-  --card:#13233a;
-  --border:#263a57;
-  --text:#f8fafc;
-  --muted:#94a3b8;
-  --cyan:#22d3ee;
-  --blue:#3b82f6;
-  --green:#22c55e;
-  --orange:#f97316;
-  --red:#ef4444;
-  --purple:#a855f7;
-  --yellow:#facc15;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-*{box-sizing:border-box}
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+    }
 
-body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:radial-gradient(circle at top left,#0b2a45,#07111f 45%,#020617);
-  color:var(--text);
-}
+    header {
+      padding: 18px 28px;
+      background: linear-gradient(90deg, #111827, #1e293b);
+      border-bottom: 1px solid #334155;
+    }
 
-.topbar{
-  height:82px;
-  padding:18px 28px;
-  border-bottom:1px solid var(--border);
-  background:linear-gradient(90deg,#08111f,#102445,#07111f);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
+    .header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+    }
 
-.logo h1{
-  margin:0;
-  font-size:27px;
-  letter-spacing:0.5px;
-}
+    h1 {
+      margin: 0;
+      font-size: 28px;
+      color: white;
+    }
 
-.logo p{
-  margin:5px 0 0;
-  color:var(--muted);
-  font-size:14px;
-}
+    header p {
+      margin: 6px 0 0;
+      color: #cbd5e1;
+      font-size: 14px;
+    }
 
-.badge{
-  background:#063247;
-  border:1px solid var(--cyan);
-  color:#a5f3fc;
-  padding:8px 12px;
-  border-radius:999px;
-  font-size:13px;
-  font-weight:bold;
-}
+    select,
+    button {
+      font-family: inherit;
+    }
 
-.app{
-  display:grid;
-  grid-template-columns:330px 1fr;
-  height:calc(100vh - 82px);
-}
+    .language-box {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 13px;
+      color: #cbd5e1;
+    }
 
-.sidebar{
-  border-right:1px solid var(--border);
-  background:rgba(15,27,45,0.95);
-  padding:18px;
-  overflow:auto;
-}
+    .language-box select,
+    .drug-select {
+      background: #1e293b;
+      color: #e5e7eb;
+      border: 1px solid #475569;
+      border-radius: 8px;
+      padding: 8px 10px;
+    }
 
-.sidebar h2{
-  margin:0 0 14px;
-  font-size:20px;
-}
+    .container {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 18px;
+      padding: 18px;
+    }
 
-.search{
-  width:100%;
-  background:#07111f;
-  border:1px solid var(--border);
-  color:white;
-  padding:12px;
-  border-radius:12px;
-  margin-bottom:14px;
-  outline:none;
-}
+    .sidebar {
+      background: #111827;
+      border: 1px solid #334155;
+      border-radius: 14px;
+      padding: 14px;
+      height: calc(100vh - 110px);
+      overflow-y: auto;
+    }
 
-.patient{
-  padding:13px;
-  margin-bottom:11px;
-  border-radius:14px;
-  border:1px solid var(--border);
-  background:#0b1627;
-  cursor:pointer;
-  transition:.2s;
-}
+    .sidebar h2 {
+      margin: 0 0 12px;
+      font-size: 18px;
+    }
 
-.patient:hover{
-  border-color:var(--cyan);
-  transform:translateX(2px);
-}
+    .patient-button {
+      width: 100%;
+      text-align: left;
+      margin-bottom: 8px;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #334155;
+      background: #1e293b;
+      color: #e5e7eb;
+      cursor: pointer;
+      transition: 0.2s;
+    }
 
-.patient.active{
-  background:linear-gradient(135deg,#0e7490,#1d4ed8);
-  border-color:#67e8f9;
-}
+    .patient-button:hover {
+      background: #334155;
+    }
 
-.patient b{
-  display:block;
-  font-size:15px;
-  margin-bottom:4px;
-}
+    .patient-button.active {
+      background: #2563eb;
+      border-color: #60a5fa;
+    }
 
-.patient span{
-  display:block;
-  font-size:12px;
-  color:#cbd5e1;
-  line-height:1.4;
-}
+    .main {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
 
-.main{
-  padding:22px;
-  overflow:auto;
-}
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
 
-.grid{
-  display:grid;
-  gap:18px;
-}
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
 
-.grid-3{
-  grid-template-columns:1.2fr 1fr 1.1fr;
-}
+    .card {
+      background: #111827;
+      border: 1px solid #334155;
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+    }
 
-.grid-2{
-  grid-template-columns:1fr 1fr;
-}
+    .card h2 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      color: white;
+    }
 
-.card{
-  background:linear-gradient(180deg,rgba(19,35,58,.98),rgba(15,27,45,.98));
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:18px;
-  box-shadow:0 18px 40px rgba(0,0,0,.22);
-}
+    .value {
+      font-size: 14px;
+      margin: 7px 0;
+      color: #d1d5db;
+    }
 
-.card h2{
-  margin:0 0 14px;
-  font-size:20px;
-}
+    .label {
+      color: #94a3b8;
+    }
 
-.card h3{
-  margin:0 0 10px;
-  font-size:16px;
-  color:#dbeafe;
-}
+    .highlight {
+      font-size: 22px;
+      color: #38bdf8;
+      font-weight: bold;
+      margin: 8px 0;
+    }
 
-.info-row{
-  display:flex;
-  justify-content:space-between;
-  border-bottom:1px solid rgba(148,163,184,.12);
-  padding:8px 0;
-  gap:12px;
-}
+    .badge {
+      display: inline-block;
+      padding: 5px 8px;
+      margin: 3px;
+      border-radius: 999px;
+      background: #1e40af;
+      color: #dbeafe;
+      font-size: 12px;
+    }
 
-.info-row .label{
-  color:var(--muted);
-}
+    .badge-warning {
+      background: #78350f;
+      color: #fef3c7;
+    }
 
-.info-row .value{
-  text-align:right;
-  font-weight:bold;
-}
+    .badge-danger {
+      background: #7f1d1d;
+      color: #fee2e2;
+    }
 
-.big-number{
-  font-size:35px;
-  color:var(--cyan);
-  font-weight:bold;
-}
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
 
-.small{
-  color:var(--muted);
-  font-size:13px;
-}
+    th,
+    td {
+      padding: 9px;
+      border-bottom: 1px solid #334155;
+      text-align: left;
+    }
 
-.pill{
-  display:inline-block;
-  padding:6px 10px;
-  border-radius:999px;
-  margin:3px;
-  font-size:12px;
-  font-weight:bold;
-  background:#334155;
-}
+    th {
+      color: #93c5fd;
+    }
 
-.pill.cyan{background:#0e7490}
-.pill.green{background:#166534}
-.pill.red{background:#991b1b}
-.pill.orange{background:#9a3412}
-.pill.purple{background:#6b21a8}
-.pill.blue{background:#1d4ed8}
+    tr.best-row {
+      background: rgba(37, 99, 235, 0.18);
+    }
 
-.progress{
-  height:11px;
-  background:#0b1627;
-  border-radius:999px;
-  overflow:hidden;
-  border:1px solid var(--border);
-}
+    .metric-row {
+      margin: 10px 0;
+    }
 
-.progress div{
-  height:100%;
-  border-radius:999px;
-  background:linear-gradient(90deg,var(--cyan),var(--blue));
-}
+    .bar-bg {
+      width: 100%;
+      height: 10px;
+      background: #334155;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 4px;
+    }
 
-button, select{
-  border:none;
-  border-radius:12px;
-  padding:11px 14px;
-  font-weight:bold;
-}
+    .bar {
+      height: 100%;
+      border-radius: 999px;
+      background: #38bdf8;
+      transition: width 0.35s ease;
+    }
 
-button{
-  cursor:pointer;
-  color:white;
-  background:linear-gradient(135deg,#0891b2,#2563eb);
-}
+    .bar-good {
+      background: #22c55e;
+    }
 
-button.secondary{
-  background:#1e293b;
-  border:1px solid var(--border);
-}
+    .bar-mid {
+      background: #facc15;
+    }
 
-select{
-  width:100%;
-  background:#07111f;
-  color:white;
-  border:1px solid var(--border);
-  margin-bottom:10px;
-}
+    .bar-bad {
+      background: #ef4444;
+    }
 
-.sim-box{
-  display:grid;
-  grid-template-columns:260px 1fr;
-  gap:18px;
-  align-items:start;
-}
+    .clinical-box {
+      background: #0f172a;
+      border-left: 4px solid #38bdf8;
+      padding: 12px;
+      border-radius: 10px;
+      color: #dbeafe;
+      line-height: 1.5;
+      font-size: 14px;
+    }
 
-.month-box{
-  background:#07111f;
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:16px;
-}
+    .sim-controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 12px 0;
+    }
 
-.month-number{
-  font-size:46px;
-  color:var(--cyan);
-  font-weight:bold;
-}
+    .sim-button {
+      background: #2563eb;
+      border: 1px solid #60a5fa;
+      color: white;
+      border-radius: 8px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-weight: bold;
+    }
 
-canvas{
-  width:100%;
-  height:310px;
-  background:#07111f;
-  border:1px solid var(--border);
-  border-radius:18px;
-}
+    .sim-button.secondary {
+      background: #334155;
+      border-color: #64748b;
+    }
 
-table{
-  width:100%;
-  border-collapse:collapse;
-  font-size:13px;
-}
+    .sim-button:hover {
+      filter: brightness(1.15);
+    }
 
-th,td{
-  padding:10px;
-  border-bottom:1px solid rgba(148,163,184,.18);
-  text-align:left;
-}
+    .month-indicator {
+      font-size: 25px;
+      color: #38bdf8;
+      font-weight: bold;
+      margin: 10px 0;
+    }
 
-th{
-  color:#a5f3fc;
-  background:#07111f;
-}
+    .risk-low {
+      color: #22c55e;
+      font-weight: bold;
+    }
 
-.explain{
-  line-height:1.6;
-  color:#e2e8f0;
-  background:#07111f;
-  border-left:4px solid var(--cyan);
-  padding:14px;
-  border-radius:14px;
-  margin-bottom:12px;
-}
+    .risk-mid {
+      color: #facc15;
+      font-weight: bold;
+    }
 
-.warning{
-  border-left-color:var(--orange);
-}
+    .risk-high {
+      color: #ef4444;
+      font-weight: bold;
+    }
 
-@media(max-width:1100px){
-  .app{grid-template-columns:1fr}
-  .grid-3,.grid-2,.sim-box{grid-template-columns:1fr}
-}
-</style>
+    .disclaimer {
+      padding: 12px;
+      background: #451a03;
+      color: #fed7aa;
+      border: 1px solid #92400e;
+      border-radius: 10px;
+      font-size: 13px;
+    }
+
+    canvas {
+      max-height: 360px;
+    }
+
+    @media (max-width: 1100px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        height: auto;
+        max-height: 320px;
+      }
+
+      .grid-3,
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .header-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
 
 <body>
-
-<div class="topbar">
-  <div class="logo">
-    <h1>EGFR Lung Cancer Digital Twin</h1>
-    <p>Prédiction IA · Simulation dynamique 12 mois · Adaptation au contexte tunisien</p>
-  </div>
-  <div class="badge">Prototype PFE — Médecine de précision</div>
-</div>
-
-<div class="app">
-
-<aside class="sidebar">
-  <h2>Patients TCGA</h2>
-  <input class="search" id="search" placeholder="Rechercher patient, mutation, stade..." oninput="renderPatientList()">
-  <div id="patientList">
-    <div class="patient " onclick="loadPatient(&#39;TCGA-67-6217&#39;)">
-      <b>TCGA-67-6217</b>
-      <span>EGFR L858R</span>
-      <span>Âge 73 ans · Stade II · FEMALE</span>
-      <span>Amivantamab + Lazertinib</span>
-    </div>
-  
-    <div class="patient active" onclick="loadPatient(&#39;TCGA-91-6847&#39;)">
-      <b>TCGA-91-6847</b>
-      <span>Other EGFR mutation</span>
-      <span>Âge 56.2 ans · Stade I · FEMALE</span>
-      <span>Osimertinib</span>
-    </div>
-  
-    <div class="patient " onclick="loadPatient(&#39;TCGA-44-2661&#39;)">
-      <b>TCGA-44-2661</b>
-      <span>EGFR exon 19 deletion</span>
-      <span>Âge 65 ans · Stade I · FEMALE</span>
-      <span>Amivantamab + Lazertinib</span>
-    </div>
-  
-    <div class="patient " onclick="loadPatient(&#39;TCGA-05-4402&#39;)">
-      <b>TCGA-05-4402</b>
-      <span>EGFR exon 19 deletion</span>
-      <span>Âge 50 ans · Stade IV · FEMALE</span>
-      <span>Amivantamab + Lazertinib</span>
-    </div>
-  
-    <div class="patient " onclick="loadPatient(&#39;TCGA-64-1681&#39;)">
-      <b>TCGA-64-1681</b>
-      <span>EGFR L858R</span>
-      <span>Âge 55 ans · Stade I · FEMALE</span>
-      <span>Amivantamab + Lazertinib</span>
-    </div>
-  
-    <div class="patient " onclick="loadPatient(&#39;TCGA-69-7765&#39;)">
-      <b>TCGA-69-7765</b>
-      <span>Other EGFR mutation</span>
-      <span>Âge 48.8 ans · Stade IV · MALE</span>
-      <span>Osimertinib</span>
-    </div>
-  
-    <div class="patient " onclick="loadPatient(&#39;TCGA-50-6595&#39;)">
-      <b>TCGA-50-6595</b>
-      <span>Other EGFR mutation</span>
-      <span>Âge 71.2 ans · Stade III · FEMALE</span>
-      <span>Osimertinib</span>
-    </div>
-  
-    <div class="patient " onclick="loadPatient(&#39;TCGA-49-4494&#39;)">
-      <b>TCGA-49-4494</b>
-      <span>EGFR T790M resistance</span>
-      <span>Âge 75 ans · Stade III · MALE</span>
-      <span>Osimertinib</span>
-    </div>
-  
-    <div class="patient " onclick="loadPatient(&#39;TCGA-38-6178&#39;)">
-      <b>TCGA-38-6178</b>
-      <span>EGFR exon 19 deletion</span>
-      <span>Âge 66.2 ans · Stade III · FEMALE</span>
-      <span>Amivantamab + Lazertinib</span>
-    </div>
-  
-    <div class="patient " onclick="loadPatient(&#39;TCGA-38-4627&#39;)">
-      <b>TCGA-38-4627</b>
-      <span>EGFR L858R</span>
-      <span>Âge 58.8 ans · Stade II · FEMALE</span>
-      <span>Amivantamab + Lazertinib</span>
-    </div>
-  
-    <div class="patient " onclick="loadPatient(&#39;TCGA-49-4501&#39;)">
-      <b>TCGA-49-4501</b>
-      <span>EGFR exon 19 deletion</span>
-      <span>Âge 62.5 ans · Stade I · FEMALE</span>
-      <span>Amivantamab + Lazertinib</span>
-    </div>
-  
-    <div class="patient " onclick="loadPatient(&#39;TCGA-75-6207&#39;)">
-      <b>TCGA-75-6207</b>
-      <span>EGFR exon 19 deletion</span>
-      <span>Âge 62.5 ans · Stade III · MALE</span>
-      <span>Amivantamab + Lazertinib</span>
-    </div>
-  
-    <div class="patient " onclick="loadPatient(&#39;TCGA-78-7155&#39;)">
-      <b>TCGA-78-7155</b>
-      <span>Other EGFR mutation</span>
-      <span>Âge 63.8 ans · Stade I · MALE</span>
-      <span>Osimertinib</span>
-    </div>
-  
-    <div class="patient " onclick="loadPatient(&#39;TCGA-44-6147&#39;)">
-      <b>TCGA-44-6147</b>
-      <span>Other EGFR mutation</span>
-      <span>Âge 62.5 ans · Stade I · FEMALE</span>
-      <span>Osimertinib</span>
-    </div>
-  
-    <div class="patient " onclick="loadPatient(&#39;TCGA-75-6212&#39;)">
-      <b>TCGA-75-6212</b>
-      <span>EGFR exon 19 deletion</span>
-      <span>Âge 62.5 ans · Stade II · FEMALE</span>
-      <span>Amivantamab + Lazertinib</span>
-    </div>
-  
-    <div class="patient " onclick="loadPatient(&#39;TCGA-95-7947&#39;)">
-      <b>TCGA-95-7947</b>
-      <span>Other EGFR mutation</span>
-      <span>Âge 62.5 ans · Stade I · MALE</span>
-      <span>Osimertinib</span>
-    </div>
-  
-    <div class="patient " onclick="loadPatient(&#39;TCGA-55-6981&#39;)">
-      <b>TCGA-55-6981</b>
-      <span>EGFR exon 19 deletion</span>
-      <span>Âge 45 ans · Stade III · FEMALE</span>
-      <span>Amivantamab + Lazertinib</span>
-    </div>
-  
-    <div class="patient " onclick="loadPatient(&#39;TCGA-95-7039&#39;)">
-      <b>TCGA-95-7039</b>
-      <span>Other EGFR mutation</span>
-      <span>Âge 46.2 ans · Stade II · FEMALE</span>
-      <span>Osimertinib</span>
-    </div>
-  
-    <div class="patient " onclick="loadPatient(&#39;TCGA-91-6835&#39;)">
-      <b>TCGA-91-6835</b>
-      <span>EGFR L858R</span>
-      <span>Âge 80 ans · Stade I · FEMALE</span>
-      <span>Amivantamab + Lazertinib</span>
-    </div>
-  
-    <div class="patient " onclick="loadPatient(&#39;TCGA-78-7147&#39;)">
-      <b>TCGA-78-7147</b>
-      <span>Other EGFR mutation</span>
-      <span>Âge 62.5 ans · Stade II · FEMALE</span>
-      <span>Osimertinib</span>
-    </div>
-  
-    <div class="patient " onclick="loadPatient(&#39;TCGA-05-4410&#39;)">
-      <b>TCGA-05-4410</b>
-      <span>Other EGFR mutation</span>
-      <span>Âge 56.2 ans · Stade I · MALE</span>
-      <span>Osimertinib</span>
-    </div>
-  
-    <div class="patient " onclick="loadPatient(&#39;TCGA-69-7760&#39;)">
-      <b>TCGA-69-7760</b>
-      <span>Other EGFR mutation</span>
-      <span>Âge 70 ans · Stade II · MALE</span>
-      <span>Osimertinib</span>
-    </div>
-  
-    <div class="patient " onclick="loadPatient(&#39;TCGA-55-7573&#39;)">
-      <b>TCGA-55-7573</b>
-      <span>EGFR exon 19 deletion</span>
-      <span>Âge 68.8 ans · Stade I · FEMALE</span>
-      <span>Amivantamab + Lazertinib</span>
-    </div>
-  </div>
-</aside>
-
-<main class="main">
-
-  <div class="grid grid-3">
-    <div class="card">
-      <h2>Patient sélectionné</h2>
-      <div class="big-number" id="selectedPatient">TCGA-91-6847</div>
-      <div class="small" id="selectedSubtitle">Other EGFR mutation · Stade I · FEMALE</div>
-    </div>
-
-    <div class="card">
-      <h2>Traitement IA</h2>
-      <div class="big-number" id="bestTreatmentShort">Osimertinib</div>
-      <div class="small">traitement recommandé par le modèle</div>
-    </div>
-
-    <div class="card">
-      <h2>État prédit à 12 mois</h2>
-      <div class="big-number" id="futureStateShort">Progression probable</div>
-      <div class="small">selon simulation du traitement choisi</div>
-    </div>
-  </div>
-
-  <br>
-
-  <div class="grid grid-3">
-    <section class="card">
-      <h2>Résumé clinique</h2>
-      <div class="info-row"><span class="label">Âge</span><span class="value" id="age">56.2 ans</span></div>
-      <div class="info-row"><span class="label">Sexe</span><span class="value" id="sex">FEMALE</span></div>
-      <div class="info-row"><span class="label">Stade tumoral</span><span class="value" id="stage">I</span></div>
-      <div class="info-row"><span class="label">Statut de survie</span><span class="value" id="survival">LIVING</span></div>
-    </section>
-
-    <section class="card">
-      <h2>Profil moléculaire</h2>
-      <div class="info-row"><span class="label">EGFR</span><span class="value" id="egfr">Other EGFR mutation</span></div>
-      <div class="info-row"><span class="label">Mutation brute</span><span class="value" id="egfrRaw">Uncommon sensitizing EGFR mutation</span></div>
-      <h3>Altérations secondaires</h3>
-      <div id="mutations"><span class="pill purple">TP53</span><span class="pill purple">KRAS</span><span class="pill purple">MET</span><span class="pill purple">ERBB2</span><span class="pill purple">BRAF</span><span class="pill purple">RB1</span><span class="pill purple">NRAS</span><span class="pill purple">AKT1</span></div>
-      <h3>Mécanismes de résistance</h3>
-      <div id="resistanceMechs"><span class="pill orange">MET bypass signaling</span><span class="pill orange">PI3K/AKT pathway bypass</span><span class="pill orange">MAPK pathway bypass</span><span class="pill orange">Genomic instability / aggressive phenotype</span></div>
-    </section>
-
-    <section class="card">
-      <h2>Scores biologiques</h2>
-      <div class="info-row"><span class="label">Sensibilité</span><span class="value" id="sensScore">52%</span></div>
-      <div class="progress"><div id="sensBar" style="width: 52%;"></div></div><br>
-
-      <div class="info-row"><span class="label">Résistance</span><span class="value" id="resScore">53%</span></div>
-      <div class="progress"><div id="resBar" style="width: 53%;"></div></div><br>
-
-      <div class="info-row"><span class="label">Agressivité</span><span class="value" id="aggScore">30.7%</span></div>
-      <div class="progress"><div id="aggBar" style="width: 30.7%;"></div></div><br>
-
-      <div class="info-row"><span class="label">Score tunisien</span><span class="value" id="tnScore">28%</span></div>
-      <div class="progress"><div id="tnBar" style="width: 28%;"></div></div>
-    </section>
-  </div>
-
-  <br>
-
-  <section class="card">
-    <h2>Simulation dynamique du traitement</h2>
-
-    <div class="sim-box">
-      <div class="month-box">
-        <label class="small">Choisir un médicament</label>
-        <select id="drugSelect"><option value="Osimertinib">Osimertinib</option><option value="Amivantamab + Lazertinib">Amivantamab + Lazertinib</option><option value="Osimertinib + Chemotherapy">Osimertinib + Chemotherapy</option><option value="Lazertinib">Lazertinib</option><option value="Amivantamab">Amivantamab</option><option value="Afatinib">Afatinib</option><option value="Erlotinib">Erlotinib</option><option value="Gefitinib">Gefitinib</option><option value="Platinum-based Chemotherapy">Platinum-based Chemotherapy</option><option value="Dacomitinib">Dacomitinib</option></select>
-
-        <button onclick="startSimulation()">Lancer simulation 12 mois</button>
-        <button class="secondary" onclick="resetSimulation()">Réinitialiser</button>
-
-        <br><br>
-
-        <div class="small">Mois simulé</div>
-        <div class="month-number" id="monthNumber">12</div>
-
-        <div class="info-row"><span class="label">Réponse</span><span class="value" id="monthResponse">Progression probable</span></div>
-        <div class="info-row"><span class="label">Volume tumoral</span><span class="value" id="monthVolume">122.52%</span></div>
-        <div class="info-row"><span class="label">Viabilité</span><span class="value" id="monthViability">78.71%</span></div>
-        <div class="info-row"><span class="label">Effet médicament</span><span class="value" id="monthDrugEffect">28%</span></div>
-        <div class="info-row"><span class="label">Résistance</span><span class="value" id="monthResistance">98%</span></div>
-      </div>
-
+  <header>
+    <div class="header-row">
       <div>
-        <canvas id="mainChart" width="1000" height="310"></canvas>
+        <h1 id="titleText">EGFR Lung Cancer Digital Twin</h1>
+        <p id="subtitleText">Precision medicine dashboard for patient-specific tumor response simulation — research prototype</p>
+      </div>
+
+      <div class="language-box">
+        <label id="languageLabel">Language</label>
+        <select id="languageSelect" onchange="changeLanguage(this.value)">
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+        </select>
       </div>
     </div>
-  </section>
+  </header>
 
-  <br>
+  <div class="container">
+    <aside class="sidebar">
+      <h2 id="patientsTitle">Patients</h2>
+      <div id="patientList">Loading...</div>
+    </aside>
 
-  <div class="grid grid-2">
-    <section class="card">
-      <h2>Interprétation médicale</h2>
-      <div class="explain" id="doctorExplanation">Le profil Other EGFR mutation oriente vers une stratégie ciblée. Le traitement Osimertinib présente une efficacité prédite de 52% avec un risque de résistance de 53%. Le patient est classé stade I. À 12 mois, le modèle estime : Risque de progression ou de résistance à surveiller avec une probabilité de réponse de 18% et un risque de progression de 75%.</div>
-      <div class="explain warning" id="tunisiaExplanation">Contexte tunisien : Limité / vérifier pharmacie hospitalière. Alternative proposée : Erlotinib/géfitinib/afatinib ou chimiothérapie à base de platine selon disponibilité. Cette couche est indicative et doit être vérifiée selon la pharmacie hospitalière et le protocole local.</div>
-    </section>
+    <main class="main">
+      <div class="grid-3">
+        <section class="card">
+          <h2 id="patientSummaryTitle">Patient Summary</h2>
+          <div id="patientSummary"></div>
+        </section>
 
-    <section class="card">
-      <h2>Interprétation laboratoire / anapath</h2>
-      <div class="explain" id="labExplanation">Profil moléculaire : Other EGFR mutation. Mutations associées : TP53, MET, KRAS. La présence de voies de résistance comme MET ou TP53 peut augmenter le risque d'échappement thérapeutique. Le suivi recommandé doit combiner l'évolution clinique, les données moléculaires et les marqueurs pathologiques simulés.</div>
-    </section>
+        <section class="card">
+          <h2 id="molecularProfileTitle">Molecular Profile</h2>
+          <div id="molecularProfile"></div>
+        </section>
+
+        <section class="card">
+          <h2 id="recommendedTreatmentTitle">Recommended Treatment</h2>
+          <div id="bestTreatment"></div>
+        </section>
+      </div>
+
+      <div class="grid-2">
+        <section class="card">
+          <h2 id="clinicalInterpretationTitle">Clinical Interpretation</h2>
+          <div id="clinicalInterpretation" class="clinical-box"></div>
+        </section>
+
+        <section class="card">
+          <h2 id="biologicalScoresTitle">Biological Scores</h2>
+          <div id="scorePanel"></div>
+        </section>
+      </div>
+
+      <div class="grid-2">
+        <section class="card">
+          <h2 id="treatmentRankingTitle">Treatment Ranking</h2>
+          <div id="rankingTable"></div>
+        </section>
+
+        <section class="card">
+          <h2 id="pathwayTitle">Pathway Activity</h2>
+          <div id="pathwayPanel"></div>
+        </section>
+      </div>
+
+      <div class="grid-2">
+        <section class="card">
+          <h2 id="simulationTitle">Real-Time Dynamic Simulation</h2>
+
+          <div class="value">
+            <span class="label" id="drugSelectorLabel">Treatment to simulate:</span>
+          </div>
+
+          <select id="drugSelector" class="drug-select" onchange="changeSimulatedDrug()"></select>
+
+          <div class="sim-controls">
+            <button class="sim-button" id="startButton" onclick="startSimulation()">Start</button>
+            <button class="sim-button secondary" id="pauseButton" onclick="pauseSimulation()">Pause</button>
+            <button class="sim-button secondary" id="resetButton" onclick="resetSimulation()">Reset</button>
+          </div>
+
+          <div class="month-indicator" id="simulationMonth">Month 0</div>
+          <div id="simulationMetrics"></div>
+
+          <canvas id="timelineChart"></canvas>
+        </section>
+
+        <section class="card">
+          <h2 id="simulationMeaningTitle">Simulation Meaning</h2>
+          <div id="simulationMeaning" class="clinical-box"></div>
+        </section>
+      </div>
+
+      <div class="disclaimer" id="disclaimerText">
+        Research prototype only. Not clinically validated for real treatment decisions.
+      </div>
+    </main>
   </div>
 
-  <br>
+<script>
+const API_BASE = window.location.origin;
 
-  <section class="card">
-    <h2>Classement thérapeutique IA</h2>
+
+const urlParams = new URLSearchParams(window.location.search);
+let currentLanguage = urlParams.get("lang") === "fr" ? "fr" : "en";
+
+let patients = [];
+let selectedPatientId = null;
+let currentDoctorData = null;
+let currentRanking = [];
+let currentTimeline = [];
+let simulationIndex = 0;
+let simulationTimer = null;
+let timelineChart = null;
+let currentDrugName = "";
+
+const translations = {
+  en: {
+    title: "EGFR Lung Cancer Digital Twin",
+    subtitle: "Precision medicine dashboard for patient-specific tumor response simulation — research prototype",
+    language: "Language",
+    patients: "Patients",
+    patientSummary: "Patient Summary",
+    molecularProfile: "Molecular Profile",
+    recommendedTreatment: "Recommended Treatment",
+    clinicalInterpretation: "Clinical Interpretation",
+    biologicalScores: "Biological Scores",
+    treatmentRanking: "Treatment Ranking",
+    pathwayActivity: "Pathway Activity",
+    simulationTitle: "Real-Time Dynamic Simulation",
+    simulationMeaning: "Simulation Meaning",
+    drugSelector: "Treatment to simulate:",
+    start: "Start",
+    pause: "Pause",
+    reset: "Reset",
+    patientId: "Patient ID",
+    age: "Age",
+    sex: "Sex",
+    stage: "Tumor stage",
+    survival: "Survival status",
+    primaryEgfr: "Primary EGFR",
+    rawEgfr: "Raw EGFR mutation",
+    egfrClass: "EGFR class",
+    secondary: "Secondary alterations",
+    mechanisms: "Resistance mechanisms",
+    bestOption: "Best ranked option",
+    rank: "Rank",
+    treatment: "Treatment",
+    efficiency: "Predicted efficiency",
+    resistanceRisk: "Resistance risk",
+    tumorVolume: "Tumor volume",
+    viability: "Viability",
+    drugEffect: "Drug effect",
+    resistance: "Resistance",
+    month: "Month",
+    low: "Low",
+    intermediate: "Intermediate",
+    high: "High",
+    noTimeline: "No simulation timeline is available for this treatment.",
+    disclaimer: "Research prototype only. Not clinically validated for real treatment decisions."
+  },
+  fr: {
+    title: "Jumeau Numérique du Cancer du Poumon EGFR",
+    subtitle: "Tableau de bord de médecine de précision pour la simulation patient-spécifique de la réponse tumorale — prototype de recherche",
+    language: "Langue",
+    patients: "Patients",
+    patientSummary: "Résumé Patient",
+    molecularProfile: "Profil Moléculaire",
+    recommendedTreatment: "Traitement Recommandé",
+    clinicalInterpretation: "Interprétation Clinique",
+    biologicalScores: "Scores Biologiques",
+    treatmentRanking: "Classement Thérapeutique",
+    pathwayActivity: "Activité des Voies de Signalisation",
+    simulationTitle: "Simulation Dynamique en Temps Réel",
+    simulationMeaning: "Signification de la Simulation",
+    drugSelector: "Traitement à simuler :",
+    start: "Démarrer",
+    pause: "Pause",
+    reset: "Réinitialiser",
+    patientId: "Identifiant patient",
+    age: "Âge",
+    sex: "Sexe",
+    stage: "Stade tumoral",
+    survival: "Statut de survie",
+    primaryEgfr: "EGFR principal",
+    rawEgfr: "Mutation EGFR brute",
+    egfrClass: "Classe EGFR",
+    secondary: "Altérations secondaires",
+    mechanisms: "Mécanismes de résistance",
+    bestOption: "Meilleure option classée",
+    rank: "Rang",
+    treatment: "Traitement",
+    efficiency: "Efficacité prédite",
+    resistanceRisk: "Risque de résistance",
+    tumorVolume: "Volume tumoral",
+    viability: "Viabilité",
+    drugEffect: "Effet du médicament",
+    resistance: "Résistance",
+    month: "Mois",
+    low: "Faible",
+    intermediate: "Intermédiaire",
+    high: "Élevé",
+    noTimeline: "Aucune timeline de simulation n’est disponible pour ce traitement.",
+    disclaimer: "Prototype de recherche uniquement. Non validé cliniquement pour de vraies décisions thérapeutiques."
+  }
+};
+
+function t(key) {
+  return translations[currentLanguage][key] || key;
+}
+
+
+function trText(text) {
+  if (!text) return "";
+  if (currentLanguage === "en") return text;
+
+  const map = {
+    "FEMALE": "Femme",
+    "MALE": "Homme",
+    "LIVING": "Vivant",
+    "DECEASED": "Décédé",
+
+    "Stage IA": "Stade IA",
+    "Stage IB": "Stade IB",
+    "Stage IIA": "Stade IIA",
+    "Stage IIB": "Stade IIB",
+    "Stage IIIA": "Stade IIIA",
+    "Stage IIIB": "Stade IIIB",
+    "Stage IV": "Stade IV",
+
+    "EGFR exon 19 deletion": "Délétion de l’exon 19 d’EGFR",
+    "EGFR L858R": "Mutation EGFR L858R",
+    "Uncommon sensitizing EGFR mutation": "Mutation EGFR rare sensibilisante",
+    "Rare/uncertain EGFR mutation": "Mutation EGFR rare ou incertaine",
+    "Compound EGFR mutation with T790M resistance": "Mutation EGFR composée avec résistance T790M",
+    "EGFR wild-type / not detected": "EGFR sauvage / non détecté",
+
+    "Exon 19 deletion": "Délétion de l’exon 19",
+    "L858R": "L858R",
+    "L861Q uncommon EGFR mutation": "Mutation EGFR rare L861Q",
+    "G719X uncommon EGFR mutation": "Mutation EGFR rare G719X",
+    "S768I uncommon EGFR mutation": "Mutation EGFR rare S768I",
+    "T790M resistance mutation": "Mutation de résistance T790M",
+    "Rare/uncertain EGFR mutation": "Mutation EGFR rare ou incertaine",
+
+    "MET bypass signaling": "Signalisation de contournement MET",
+    "PI3K/AKT pathway bypass": "Contournement de la voie PI3K/AKT",
+    "MAPK pathway bypass": "Contournement de la voie MAPK",
+    "Genomic instability / aggressive phenotype": "Instabilité génomique / phénotype agressif",
+    "EGFR T790M-mediated resistance": "Résistance médiée par EGFR T790M",
+    "Metabolic/stress-resistance phenotype": "Phénotype de résistance métabolique / au stress"
+  };
+
+  return map[text] || text;
+}
+
+function trDrugName(name) {
+  if (!name) return "";
+  if (currentLanguage === "en") return name;
+
+  const map = {
+    "Osimertinib + Chemotherapy": "Osimertinib + Chimiothérapie",
+    "Platinum-based Chemotherapy": "Chimiothérapie à base de platine",
+    "Amivantamab + Lazertinib": "Amivantamab + Lazertinib",
+    "Osimertinib": "Osimertinib",
+    "Lazertinib": "Lazertinib",
+    "Amivantamab": "Amivantamab",
+    "Gefitinib": "Gefitinib",
+    "Erlotinib": "Erlotinib",
+    "Afatinib": "Afatinib",
+    "Dacomitinib": "Dacomitinib"
+  };
+
+  return map[name] || name;
+}
+
+function trExplanation(text) {
+  if (!text) return "";
+  if (currentLanguage === "en") return text;
+
+  const map = {
+    "EGFR mutation detected: EGFR-targeted therapy is biologically relevant.":
+      "Mutation EGFR détectée : une thérapie ciblant EGFR est biologiquement pertinente.",
+
+    "Exon 19 deletion suggests EGFR-TKI sensitivity.":
+      "La délétion de l’exon 19 suggère une sensibilité aux inhibiteurs EGFR-TKI.",
+
+    "L858R is a classical EGFR sensitizing mutation.":
+      "L858R est une mutation EGFR sensibilisante classique.",
+
+    "Uncommon EGFR mutation detected; response may vary by drug.":
+      "Une mutation EGFR rare est détectée ; la réponse peut varier selon le traitement.",
+
+    "Third-generation EGFR-TKI; strong standard-like profile for EGFR-mutated disease.":
+      "EGFR-TKI de troisième génération, avec un profil favorable dans les cancers EGFR-mutés.",
+
+    "Third-generation EGFR-TKI-like profile.":
+      "Profil proche d’un EGFR-TKI de troisième génération.",
+
+    "Combination of targeted and cytotoxic pressure.":
+      "Combinaison d’une pression ciblée et cytotoxique.",
+
+    "Aggressive or TP53-altered biology supports combination treatment.":
+      "Une biologie agressive ou altérée par TP53 soutient l’intérêt d’un traitement combiné.",
+
+    "Aggressive/high-risk biology supports combination treatment.":
+      "Une biologie agressive ou à haut risque soutient l’intérêt d’un traitement combiné.",
+
+    "TP53 co-mutation increases aggressive behavior and predicted risk.":
+      "La co-mutation TP53 augmente l’agressivité tumorale et le risque prédit.",
+
+    "MET alteration suggests bypass signaling.":
+      "L’altération MET suggère une signalisation de contournement.",
+
+    "MET bypass detected: combination is favored.":
+      "Un contournement MET est détecté : la combinaison est favorisée.",
+
+    "EGFR/MET bispecific antibody.":
+      "Anticorps bispécifique EGFR/MET.",
+
+    "MET alteration detected: EGFR/MET targeting becomes more relevant.":
+      "Altération MET détectée : le ciblage EGFR/MET devient plus pertinent.",
+
+    "Combination strategy targeting EGFR and MET-axis escape.":
+      "Stratégie combinée ciblant EGFR et l’échappement via l’axe MET.",
+
+    "PI3K/AKT alteration may maintain survival signaling.":
+      "Une altération PI3K/AKT peut maintenir les signaux de survie cellulaire.",
+
+    "MAPK pathway alteration may reduce EGFR dependency.":
+      "Une altération de la voie MAPK peut réduire la dépendance à EGFR.",
+
+    "STK11/KEAP1 alteration suggests stress-resistant tumor biology.":
+      "Une altération STK11/KEAP1 suggère une biologie tumorale résistante au stress.",
+
+    "High EGFR pathway activity supports EGFR pathway inhibition.":
+      "Une forte activité de la voie EGFR soutient l’intérêt d’une inhibition de cette voie.",
+
+    "First-generation EGFR-TKI; vulnerable to resistance.":
+      "EGFR-TKI de première génération, plus vulnérable aux mécanismes de résistance.",
+
+    "Second-generation irreversible EGFR/ERBB inhibition.":
+      "Inhibition irréversible EGFR/ERBB de deuxième génération.",
+
+    "Uncommon EGFR mutation may favor broader ERBB inhibition.":
+      "Une mutation EGFR rare peut favoriser une inhibition ERBB plus large.",
+
+    "Non-targeted systemic comparator.":
+      "Comparateur systémique non ciblé."
+  };
+
+  return map[text] || text;
+}
+
+function trList(items) {
+  if (!items || items.length === 0) return [];
+  return items.map(x => trText(x));
+}
+
+function applyTranslations() {
+  const map = {
+    titleText: "title",
+    subtitleText: "subtitle",
+    languageLabel: "language",
+    patientsTitle: "patients",
+    patientSummaryTitle: "patientSummary",
+    molecularProfileTitle: "molecularProfile",
+    recommendedTreatmentTitle: "recommendedTreatment",
+    clinicalInterpretationTitle: "clinicalInterpretation",
+    biologicalScoresTitle: "biologicalScores",
+    treatmentRankingTitle: "treatmentRanking",
+    pathwayTitle: "pathwayActivity",
+    simulationTitle: "simulationTitle",
+    simulationMeaningTitle: "simulationMeaning",
+    drugSelectorLabel: "drugSelector",
+    startButton: "start",
+    pauseButton: "pause",
+    resetButton: "reset",
+    disclaimerText: "disclaimer"
+  };
+
+  Object.entries(map).forEach(([id, key]) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = t(key);
+  });
+}
+
+function changeLanguage(lang) {
+  currentLanguage = lang;
+  
+applyTranslations();
+const langSelector = document.getElementById("languageSelect");
+if (langSelector) langSelector.value = currentLanguage;
+
+
+  if (selectedPatientId) {
+    renderCurrentPatient();
+    populateDrugSelector();
+
+    const selectedRank = Number(document.getElementById("drugSelector").value || 1);
+    selectDrugRank(selectedRank);
+  }
+}
+
+function normalizeMetric(value) {
+  value = Number(value || 0);
+
+  if (value > 1.5) {
+    return value / 100.0;
+  }
+
+  return value;
+}
+
+function displayMetricValue(value) {
+  value = Number(value || 0);
+
+  if (value > 1.5) {
+    return value.toFixed(1);
+  }
+
+  return value.toFixed(2);
+}
+
+function percent(value) {
+  const normalized = normalizeMetric(value);
+
+  if (normalized === null || normalized === undefined || isNaN(normalized)) {
+    return "N/A";
+  }
+
+  return Math.round(normalized * 100) + "%";
+}
+
+function fixed(value) {
+  if (value === null || value === undefined || isNaN(value)) {
+    return "N/A";
+  }
+
+  return Number(value).toFixed(2);
+}
+
+function riskLabel(value) {
+  const v = normalizeMetric(value);
+
+  if (v < 0.33) return `<span class="risk-low">${t("low")}</span>`;
+  if (v < 0.66) return `<span class="risk-mid">${t("intermediate")}</span>`;
+  return `<span class="risk-high">${t("high")}</span>`;
+}
+
+function badgeList(items, type="normal") {
+  if (!items || items.length === 0) {
+    return "<span class='badge'>None</span>";
+  }
+
+  const cls = type === "danger"
+    ? "badge badge-danger"
+    : type === "warning"
+      ? "badge badge-warning"
+      : "badge";
+
+  return items.map(x => `<span class="${cls}">${x}</span>`).join("");
+}
+
+function barClass(value, reverse=false) {
+  value = Number(value || 0);
+
+  if (reverse) {
+    if (value < 0.33) return "bar-good";
+    if (value < 0.66) return "bar-mid";
+    return "bar-bad";
+  }
+
+  if (value < 0.33) return "bar-bad";
+  if (value < 0.66) return "bar-mid";
+  return "bar-good";
+}
+
+function metricBar(label, value, reverse=false) {
+  const rawValue = Number(value || 0);
+  const normalized = normalizeMetric(rawValue);
+  const width = Math.max(0, Math.min(100, normalized * 100));
+
+  return `
+    <div class="metric-row">
+      <div>
+        <span class="label">${label}:</span>
+        ${displayMetricValue(rawValue)} (${Math.round(width)}%)
+      </div>
+      <div class="bar-bg">
+        <div class="bar ${barClass(normalized, reverse)}" style="width:${width}%"></div>
+      </div>
+    </div>
+  `;
+}
+
+async function loadPatients() {
+  const res = await fetch(`${API_BASE}/patients`);
+  const data = await res.json();
+
+  patients = data.patients || [];
+
+  const list = document.getElementById("patientList");
+  list.innerHTML = "";
+
+  patients.forEach((p, index) => {
+    const btn = document.createElement("button");
+    btn.className = "patient-button";
+    btn.id = `btn-${p.patient_id}`;
+    btn.innerHTML = `
+      <strong>${p.patient_id}</strong><br>
+      <small>${trText(p.primary_egfr || "Unknown EGFR")} | ${t("age")} ${p.age}</small>
+    `;
+    btn.onclick = () => selectPatient(p.patient_id);
+    list.appendChild(btn);
+
+    if (index === 0) {
+      selectPatient(p.patient_id);
+    }
+  });
+}
+
+async function selectPatient(patientId) {
+  selectedPatientId = patientId;
+  pauseSimulation();
+
+  document.querySelectorAll(".patient-button").forEach(btn => {
+    btn.classList.remove("active");
+  });
+
+  const activeBtn = document.getElementById(`btn-${patientId}`);
+  if (activeBtn) activeBtn.classList.add("active");
+
+  const [doctorRes, rankingRes] = await Promise.all([
+    fetch(`${API_BASE}/patients/${patientId}/doctor-view`),
+    fetch(`${API_BASE}/patients/${patientId}/ranking`)
+  ]);
+
+  currentDoctorData = await doctorRes.json();
+  currentRanking = (await rankingRes.json()).ranking || [];
+
+  populateDrugSelector();
+  renderCurrentPatient();
+  await selectDrugRank(1);
+}
+
+function populateDrugSelector() {
+  const selector = document.getElementById("drugSelector");
+  const currentValue = selector.value || "1";
+
+  selector.innerHTML = "";
+
+  currentRanking.forEach(drug => {
+    const option = document.createElement("option");
+    option.value = drug.rank;
+    option.textContent = `${drug.rank}. ${trDrugName(drug.drug_name)}`;
+    selector.appendChild(option);
+  });
+
+  selector.value = currentValue;
+  if (!selector.value) selector.value = "1";
+}
+
+function renderCurrentPatient() {
+  if (!currentDoctorData) return;
+
+  const data = currentDoctorData;
+  const c = data.clinical_summary || {};
+  const m = data.molecular_summary || {};
+  const b = data.biological_scores || {};
+  const micro = data.microenvironment || {};
+  const best = data.recommended_treatment || {};
+  const pathway = best.pathway_activity || {};
+
+  document.getElementById("patientSummary").innerHTML = `
+    <div class="value"><span class="label">${t("patientId")}:</span> ${data.patient_id}</div>
+    <div class="value"><span class="label">${t("age")}:</span> ${c.age}</div>
+    <div class="value"><span class="label">${t("sex")}:</span> ${trText(c.sex)}</div>
+    <div class="value"><span class="label">${t("stage")}:</span> ${trText(c.tumor_stage)}</div>
+    <div class="value"><span class="label">${t("survival")}:</span> ${trText(c.survival_status)}</div>
+  `;
+
+  document.getElementById("molecularProfile").innerHTML = `
+    <div class="value"><span class="label">${t("primaryEgfr")}:</span></div>
+    <div class="highlight">${trText(m.primary_egfr_mutation || "Unknown")}</div>
+
+    <div class="value"><span class="label">${t("rawEgfr")}:</span> ${m.raw_egfr_mutation || "Unknown"}</div>
+
+    <div class="value"><span class="label">${t("egfrClass")}:</span></div>
+    ${badgeList(trList(m.egfr_variant_classes))}
+
+    <div class="value"><span class="label">${t("secondary")}:</span></div>
+    ${badgeList(m.secondary_mutations, "warning")}
+
+    <div class="value"><span class="label">${t("mechanisms")}:</span></div>
+    ${badgeList(trList(m.resistance_mechanisms), "danger")}
+  `;
+
+  document.getElementById("bestTreatment").innerHTML = `
+    <div class="value"><span class="label">${t("bestOption")}:</span></div>
+    <div class="highlight">${trDrugName(best.drug_name || "N/A")}</div>
+    <div class="value"><span class="label">${t("rank")}:</span> ${best.rank}</div>
+    <div class="value"><span class="label">${t("efficiency")}:</span> ${percent(best.predicted_efficiency)}</div>
+    <div class="value"><span class="label">${t("resistanceRisk")}:</span> ${percent(best.resistance_risk)} (${riskLabel(best.resistance_risk || 0)})</div>
+    <ul>${(best.explanation || []).map(e => `<li>${trExplanation(e)}</li>`).join("")}</ul>
+  `;
+
+  document.getElementById("clinicalInterpretation").innerHTML = buildClinicalInterpretation(data);
+
+  document.getElementById("scorePanel").innerHTML = `
+    ${metricBar("EGFR pathway activity", b.egfr_pathway_activity || 0)}
+    ${metricBar("Tumor aggressiveness", b.tumor_aggressiveness || 0, true)}
+    ${metricBar("Survival risk", b.survival_risk_score || 0, true)}
+    ${metricBar("EGFR-TKI response score", b.egfr_tki_response_score || 0)}
+
+    <h2 style="margin-top:18px;">Microenvironment</h2>
+    ${metricBar("Tumor fraction", micro.tumor_fraction || 0)}
+    ${metricBar("Resistant fraction", micro.resistant_fraction || 0, true)}
+    ${metricBar("Necrotic fraction", micro.necrotic_fraction || 0, true)}
+    ${metricBar("Stromal fraction", micro.stromal_fraction || 0)}
+  `;
+
+  renderRanking();
+  renderPathway(pathway);
+}
+
+function buildClinicalInterpretation(data) {
+  const m = data.molecular_summary || {};
+  const best = data.recommended_treatment || {};
+  const primary = trText(m.primary_egfr_mutation || "unknown EGFR profile");
+  const raw = m.raw_egfr_mutation || "unknown";
+  const secondaries = (m.secondary_mutations || []).join(", ") || "none";
+  const mechanisms = trList(m.resistance_mechanisms || []).join(", ") || "no major mechanism";
+  const treatment = trDrugName(best.drug_name || "N/A");
+
+  if (currentLanguage === "fr") {
+    return `
+      Ce patient présente un profil moléculaire compatible avec <strong>${primary}</strong>
+      (<strong>${raw}</strong>). Les altérations secondaires détectées sont :
+      <strong>${secondaries}</strong>. Les mécanismes de résistance identifiés sont :
+      <strong>${mechanisms}</strong>.
+      <br><br>
+      Le modèle recommande <strong>${treatment}</strong> comme meilleure option simulée.
+      Cette recommandation combine le profil EGFR, les altérations secondaires,
+      l'activité des voies de signalisation et la simulation dynamique de réponse tumorale.
+    `;
+  }
+
+  return `
+    This patient presents a molecular profile compatible with <strong>${primary}</strong>
+    (<strong>${raw}</strong>). Detected secondary alterations include:
+    <strong>${secondaries}</strong>. Identified resistance mechanisms include:
+    <strong>${mechanisms}</strong>.
+    <br><br>
+    The model recommends <strong>${treatment}</strong> as the best simulated option.
+    This recommendation combines EGFR profile, secondary alterations,
+    pathway activity, and dynamic tumor-response simulation.
+  `;
+}
+
+function renderRanking() {
+  let html = `
     <table>
       <thead>
         <tr>
-          <th>Rang</th>
-          <th>Traitement</th>
-          <th>Efficacité</th>
-          <th>Résistance</th>
-          <th>Réponse 12 mois</th>
-          <th>Progression</th>
-          <th>Faisabilité Tunisie</th>
+          <th>${t("rank")}</th>
+          <th>${t("treatment")}</th>
+          <th>${t("efficiency")}</th>
+          <th>${t("resistanceRisk")}</th>
         </tr>
       </thead>
-      <tbody id="rankingBody">
-      <tr>
-        <td>1</td>
-        <td><b>Osimertinib</b></td>
-        <td>52%</td>
-        <td>53%</td>
-        <td>18%</td>
-        <td>75%</td>
-        <td>Limité / vérifier pharmacie hospitalière</td>
-      </tr>
-    
-      <tr>
-        <td>2</td>
-        <td><b>Amivantamab + Lazertinib</b></td>
-        <td>52%</td>
-        <td>53%</td>
-        <td>18%</td>
-        <td>75%</td>
-        <td>Très limité / importation ou recherche</td>
-      </tr>
-    
-      <tr>
-        <td>3</td>
-        <td><b>Osimertinib + Chemotherapy</b></td>
-        <td>52%</td>
-        <td>53%</td>
-        <td>18%</td>
-        <td>75%</td>
-        <td>Limité / vérifier pharmacie hospitalière</td>
-      </tr>
-    
-      <tr>
-        <td>4</td>
-        <td><b>Lazertinib</b></td>
-        <td>52%</td>
-        <td>53%</td>
-        <td>18%</td>
-        <td>75%</td>
-        <td>Très limité / importation ou recherche</td>
-      </tr>
-    
-      <tr>
-        <td>5</td>
-        <td><b>Amivantamab</b></td>
-        <td>52%</td>
-        <td>53%</td>
-        <td>18%</td>
-        <td>75%</td>
-        <td>Très limité / importation ou recherche</td>
-      </tr>
-    
-      <tr>
-        <td>6</td>
-        <td><b>Afatinib</b></td>
-        <td>52%</td>
-        <td>53%</td>
-        <td>18%</td>
-        <td>75%</td>
-        <td>Alternative possible / vérifier disponibilité</td>
-      </tr>
-    
-      <tr>
-        <td>7</td>
-        <td><b>Erlotinib</b></td>
-        <td>52%</td>
-        <td>53%</td>
-        <td>18%</td>
-        <td>75%</td>
-        <td>Alternative possible / vérifier disponibilité</td>
-      </tr>
-    
-      <tr>
-        <td>8</td>
-        <td><b>Gefitinib</b></td>
-        <td>52%</td>
-        <td>53%</td>
-        <td>18%</td>
-        <td>75%</td>
-        <td>Alternative possible / vérifier disponibilité</td>
-      </tr>
-    
-      <tr>
-        <td>9</td>
-        <td><b>Platinum-based Chemotherapy</b></td>
-        <td>52%</td>
-        <td>53%</td>
-        <td>18%</td>
-        <td>75%</td>
-        <td>Option locale plus accessible</td>
-      </tr>
-    
-      <tr>
-        <td>10</td>
-        <td><b>Dacomitinib</b></td>
-        <td>52%</td>
-        <td>53%</td>
-        <td>18%</td>
-        <td>75%</td>
-        <td>Alternative possible / vérifier disponibilité</td>
-      </tr>
-    </tbody>
-    </table>
-  </section>
+      <tbody>
+  `;
 
-</main>
-</div>
-
-<script>
-let PATIENTS = [];
-let CURRENT = null;
-let animationTimer = null;
-
-async function api(path){
-  const res = await fetch(path);
-  if(!res.ok){ throw new Error(await res.text()); }
-  return await res.json();
-}
-
-async function init(){
-  PATIENTS = await api("/api/patients");
-  renderPatientList();
-
-  if(PATIENTS.length > 0){
-    await loadPatient(PATIENTS[0].patient_id);
-  }
-}
-
-function renderPatientList(){
-  const q = document.getElementById("search").value.toLowerCase();
-  const container = document.getElementById("patientList");
-
-  const filtered = PATIENTS.filter(p => JSON.stringify(p).toLowerCase().includes(q));
-
-  container.innerHTML = filtered.map(p => `
-    <div class="patient ${CURRENT && CURRENT.patient_id === p.patient_id ? "active" : ""}" onclick="loadPatient('${p.patient_id}')">
-      <b>${p.patient_id}</b>
-      <span>${p.egfr}</span>
-      <span>Âge ${p.age_years || "--"} ans · Stade ${p.stage} · ${p.sex}</span>
-      <span>${p.best_treatment}</span>
-    </div>
-  `).join("");
-}
-
-async function loadPatient(pid){
-  clearInterval(animationTimer);
-  CURRENT = await api(`/api/patient/${pid}`);
-  renderPatientList();
-  renderPatient(CURRENT);
-}
-
-function setText(id,val){
-  document.getElementById(id).textContent = val ?? "--";
-}
-
-function setBar(id,val){
-  const v = Math.max(0, Math.min(100, Number(val || 0)));
-  document.getElementById(id).style.width = v + "%";
-}
-
-function pill(text, cls){
-  return `<span class="pill ${cls || "blue"}">${text}</span>`;
-}
-
-function renderPatient(p){
-  const c = p.clinical_profile || {};
-  const m = p.molecular_profile || {};
-  const bio = p.bio_scores || {};
-  const best = p.best_prediction || {};
-  const future = p.clinical_future || {};
-
-  setText("selectedPatient", p.patient_id);
-  setText("selectedSubtitle", `${m.egfr_class || "--"} · Stade ${c.stage || "--"} · ${c.sex || "--"}`);
-
-  setText("bestTreatmentShort", best.drug || "--");
-  setText("futureStateShort", future.final_response_category || "--");
-
-  setText("age", c.age_years ? `${c.age_years} ans` : "--");
-  setText("sex", c.sex);
-  setText("stage", c.stage);
-  setText("survival", c.survival_status);
-
-  setText("egfr", m.egfr_class);
-  setText("egfrRaw", m.egfr_raw);
-
-  const muts = m.secondary_mutations || [];
-  const ress = m.resistance_mechanisms || [];
-
-  document.getElementById("mutations").innerHTML =
-    muts.length ? muts.map(x => pill(x,"purple")).join("") : pill("Aucune", "blue");
-
-  document.getElementById("resistanceMechs").innerHTML =
-    ress.length ? ress.map(x => pill(x,"orange")).join("") : pill("Aucun", "blue");
-
-  setText("sensScore", `${bio.treatment_sensitivity || 0}%`);
-  setText("resScore", `${bio.resistance_score || 0}%`);
-  setText("aggScore", `${bio.tumor_aggressiveness || 0}%`);
-  setText("tnScore", `${bio.tunisian_output_score || 0}%`);
-
-  setBar("sensBar", bio.treatment_sensitivity);
-  setBar("resBar", bio.resistance_score);
-  setBar("aggBar", bio.tumor_aggressiveness);
-  setBar("tnBar", bio.tunisian_output_score);
-
-  renderDrugSelect(p);
-  renderRanking(p.treatment_ranking || []);
-  resetSimulation();
-}
-
-function renderDrugSelect(p){
-  const select = document.getElementById("drugSelect");
-  const sims = p.simulation_by_treatment || {};
-  const drugs = Object.keys(sims);
-
-  select.innerHTML = drugs.map(d => `<option value="${d}">${d}</option>`).join("");
-
-  const best = p.best_prediction?.drug;
-  if(best && drugs.includes(best)){
-    select.value = best;
-  }
-
-  select.onchange = () => {
-    resetSimulation();
-    updateExplanationsForDrug(select.value);
-  };
-
-  updateExplanationsForDrug(select.value);
-}
-
-function selectedPayload(){
-  const drug = document.getElementById("drugSelect").value;
-  const sims = CURRENT.simulation_by_treatment || {};
-  return sims[drug];
-}
-
-function resetSimulation(){
-  clearInterval(animationTimer);
-  setText("monthNumber", "0");
-  setText("monthResponse", "--");
-  setText("monthVolume", "--");
-  setText("monthViability", "--");
-  setText("monthDrugEffect", "--");
-  setText("monthResistance", "--");
-
-  const payload = selectedPayload();
-  if(payload && payload.timeline){
-    drawChart(payload.timeline, 0);
-    updateExplanationsForDrug(document.getElementById("drugSelect").value);
-  }
-}
-
-function startSimulation(){
-  clearInterval(animationTimer);
-
-  const payload = selectedPayload();
-  if(!payload || !payload.timeline) return;
-
-  const timeline = payload.timeline;
-  let i = 0;
-
-  updateMonth(timeline[0], 1);
-  drawChart(timeline, 1);
-
-  animationTimer = setInterval(() => {
-    i++;
-    if(i >= timeline.length){
-      clearInterval(animationTimer);
-      return;
-    }
-
-    updateMonth(timeline[i], i + 1);
-    drawChart(timeline, i + 1);
-  }, 750);
-}
-
-function updateMonth(m, visibleCount){
-  setText("monthNumber", m.month);
-  setText("monthResponse", m.response);
-  setText("monthVolume", `${m.tumor_volume}%`);
-  setText("monthViability", `${m.cell_viability}%`);
-  setText("monthDrugEffect", `${Math.round(m.drug_effect * 100)}%`);
-  setText("monthResistance", `${Math.round(m.resistance * 100)}%`);
-}
-
-function updateExplanationsForDrug(drug){
-  const payload = CURRENT?.simulation_by_treatment?.[drug];
-  if(!payload) return;
-
-  const exp = payload.explanations || {};
-  setText("doctorExplanation", exp.doctor_explanation || "--");
-  setText("labExplanation", exp.lab_explanation || "--");
-  setText("tunisiaExplanation", exp.tunisia_explanation || "--");
-}
-
-function renderRanking(ranking){
-  const body = document.getElementById("rankingBody");
-  body.innerHTML = ranking.map(r => {
-    const fut = r.clinical_future || {};
-    return `
-      <tr>
-        <td>${r.rank}</td>
-        <td><b>${r.drug}</b></td>
-        <td>${Math.round((r.predicted_efficiency || 0) * 100)}%</td>
-        <td>${Math.round((r.resistance_risk || 0) * 100)}%</td>
-        <td>${Math.round((fut.response_probability || 0) * 100)}%</td>
-        <td>${Math.round((fut.progression_risk_12m || 0) * 100)}%</td>
-        <td>${r.tunisia_feasibility}</td>
+  currentRanking.forEach(drug => {
+    html += `
+      <tr class="${drug.rank === 1 ? "best-row" : ""}">
+        <td>${drug.rank}</td>
+        <td>${trDrugName(drug.drug_name)}</td>
+        <td>${percent(drug.predicted_efficiency)}</td>
+        <td>${percent(drug.resistance_risk)}</td>
       </tr>
     `;
-  }).join("");
-}
-
-function drawChart(timeline, visibleCount){
-  const canvas = document.getElementById("mainChart");
-  const ctx = canvas.getContext("2d");
-
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-
-  const w = canvas.width;
-  const h = canvas.height;
-  const pad = 48;
-
-  ctx.strokeStyle = "#263a57";
-  ctx.lineWidth = 1;
-
-  ctx.beginPath();
-  ctx.moveTo(pad,pad);
-  ctx.lineTo(pad,h-pad);
-  ctx.lineTo(w-pad,h-pad);
-  ctx.stroke();
-
-  const data = timeline.slice(0, visibleCount || timeline.length);
-
-  const series = [
-    {key:"tumor_volume", label:"Volume tumoral", color:"#22d3ee"},
-    {key:"cell_viability", label:"Viabilité", color:"#22c55e"},
-    {key:"molecular_activity", label:"Activité EGFR", color:"#a855f7"},
-    {key:"resistance", label:"Résistance", color:"#ef4444", scale:100}
-  ];
-
-  function x(i){
-    return pad + i * ((w - 2*pad) / 11);
-  }
-
-  function y(v){
-    return h - pad - (v / 100) * (h - 2*pad);
-  }
-
-  ctx.font = "13px Arial";
-
-  series.forEach((s, idx) => {
-    ctx.strokeStyle = s.color;
-    ctx.lineWidth = 3;
-    ctx.beginPath();
-
-    data.forEach((d,i) => {
-      let v = Number(d[s.key] || 0);
-      if(s.scale) v = v * s.scale;
-
-      if(i === 0) ctx.moveTo(x(i), y(v));
-      else ctx.lineTo(x(i), y(v));
-    });
-
-    ctx.stroke();
-
-    ctx.fillStyle = s.color;
-    ctx.fillText(s.label, pad + idx*180, 24);
-
-    data.forEach((d,i) => {
-      let v = Number(d[s.key] || 0);
-      if(s.scale) v = v * s.scale;
-      ctx.beginPath();
-      ctx.arc(x(i), y(v), 4, 0, Math.PI*2);
-      ctx.fill();
-    });
   });
 
-  ctx.fillStyle = "#94a3b8";
-  ctx.font = "12px Arial";
-  for(let i=0;i<12;i++){
-    ctx.fillText(String(i+1), x(i)-3, h-20);
-  }
-
-  ctx.fillText("Mois", w - pad - 15, h - 18);
+  html += "</tbody></table>";
+  document.getElementById("rankingTable").innerHTML = html;
 }
 
-init().catch(err => {
-  alert("Erreur dashboard : " + err.message);
+function renderPathway(pathway) {
+  pathway = pathway || {};
+
+  document.getElementById("pathwayPanel").innerHTML = `
+    ${metricBar("EGFR", pathway.EGFR || 0, true)}
+    ${metricBar("PI3K/AKT", pathway.PI3K_AKT || 0, true)}
+    ${metricBar("MAPK/ERK", pathway.MAPK_ERK || 0, true)}
+    ${metricBar("mTOR", pathway.mTOR || 0, true)}
+  `;
+}
+
+async function changeSimulatedDrug() {
+  const rank = Number(document.getElementById("drugSelector").value);
+  await selectDrugRank(rank);
+}
+
+async function selectDrugRank(rank) {
+  if (!selectedPatientId) return;
+
+  pauseSimulation();
+
+  const drug = currentRanking.find(d => Number(d.rank) === Number(rank));
+
+  if (drug) {
+    currentDrugName = trDrugName(drug.drug_name);
+    renderPathway(drug.pathway_activity || {});
+  }
+
+  try {
+    const res = await fetch(`${API_BASE}/patients/${selectedPatientId}/timeline/${rank}`);
+    const data = await res.json();
+
+    currentTimeline = data.timeline || [];
+    currentDrugName = trDrugName(data.drug_name || currentDrugName || "Selected treatment");
+    simulationIndex = 0;
+
+    renderTimeline(currentTimeline, currentDrugName);
+    resetSimulation();
+
+    if (!currentTimeline || currentTimeline.length === 0) {
+      document.getElementById("simulationMeaning").innerHTML = t("noTimeline");
+    }
+  } catch (error) {
+    console.error("Timeline loading error:", error);
+    document.getElementById("simulationMeaning").innerHTML =
+      currentLanguage === "fr"
+        ? "Erreur lors du chargement de la simulation."
+        : "Error while loading simulation.";
+  }
+}
+
+function renderTimeline(timeline, drugName) {
+  const ctx = document.getElementById("timelineChart").getContext("2d");
+
+  if (timelineChart) {
+    timelineChart.destroy();
+  }
+
+  timelineChart = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: timeline.map(x => "M" + x.month),
+      datasets: [
+        {
+          label: t("tumorVolume"),
+          data: timeline.map(x => normalizeMetric(x.tumor_volume)),
+          borderWidth: 2,
+          pointRadius: timeline.map((_, i) => i === simulationIndex ? 8 : 3)
+        },
+        {
+          label: t("viability"),
+          data: timeline.map(x => normalizeMetric(x.viability)),
+          borderWidth: 2,
+          pointRadius: timeline.map((_, i) => i === simulationIndex ? 8 : 3)
+        },
+        {
+          label: t("drugEffect"),
+          data: timeline.map(x => normalizeMetric(x.drug_effect)),
+          borderWidth: 2,
+          pointRadius: timeline.map((_, i) => i === simulationIndex ? 8 : 3)
+        },
+        {
+          label: t("resistance"),
+          data: timeline.map(x => normalizeMetric(x.resistance)),
+          borderWidth: 2,
+          pointRadius: timeline.map((_, i) => i === simulationIndex ? 8 : 3)
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      animation: false,
+      plugins: {
+        title: {
+          display: true,
+          text: drugName,
+          color: "#e5e7eb"
+        },
+        legend: {
+          labels: {
+            color: "#e5e7eb"
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: { color: "#cbd5e1" },
+          grid: { color: "#334155" }
+        },
+        y: {
+          min: 0,
+          max: 1,
+          ticks: {
+            color: "#cbd5e1",
+            callback: function(value) {
+              return Math.round(value * 100) + "%";
+            }
+          },
+          grid: { color: "#334155" }
+        }
+      }
+    }
+  });
+}
+
+function updateChartMarker() {
+  if (!timelineChart || !currentTimeline) return;
+
+  timelineChart.data.datasets.forEach(dataset => {
+    dataset.pointRadius = currentTimeline.map((_, i) => i === simulationIndex ? 8 : 3);
+  });
+
+  timelineChart.update();
+}
+
+function renderSimulationFrame(frame) {
+  if (!frame) return;
+
+  document.getElementById("simulationMonth").textContent =
+    `${t("month")} ${frame.month}`;
+
+  document.getElementById("simulationMetrics").innerHTML = `
+    ${metricBar(t("tumorVolume"), frame.tumor_volume || 0, true)}
+    ${metricBar(t("viability"), frame.viability || 0, true)}
+    ${metricBar(t("drugEffect"), frame.drug_effect || 0)}
+    ${metricBar(t("resistance"), frame.resistance || 0, true)}
+  `;
+
+  const tumorPercent = Math.round(normalizeMetric(frame.tumor_volume) * 100);
+  const viabilityPercent = Math.round(normalizeMetric(frame.viability) * 100);
+  const drugPercent = Math.round(normalizeMetric(frame.drug_effect) * 100);
+  const resistancePercent = Math.round(normalizeMetric(frame.resistance) * 100);
+
+  if (currentLanguage === "fr") {
+    document.getElementById("simulationMeaning").innerHTML = `
+      Au mois <strong>${frame.month}</strong>, sous <strong>${currentDrugName}</strong>,
+      le volume tumoral simulé est à <strong>${tumorPercent}%</strong>.
+      La viabilité cellulaire est de <strong>${viabilityPercent}%</strong>.
+      L'effet du médicament est estimé à <strong>${drugPercent}%</strong>,
+      tandis que la résistance atteint <strong>${resistancePercent}%</strong>.
+    `;
+  } else {
+    document.getElementById("simulationMeaning").innerHTML = `
+      At month <strong>${frame.month}</strong>, under <strong>${currentDrugName}</strong>,
+      simulated tumor volume is at <strong>${tumorPercent}%</strong>.
+      Cell viability is <strong>${viabilityPercent}%</strong>.
+      Drug effect is estimated at <strong>${drugPercent}%</strong>,
+      while resistance reaches <strong>${resistancePercent}%</strong>.
+    `;
+  }
+
+  updateChartMarker();
+}
+
+function startSimulation() {
+  if (!currentTimeline || currentTimeline.length === 0) {
+    document.getElementById("simulationMeaning").innerHTML = t("noTimeline");
+    return;
+  }
+
+  pauseSimulation();
+
+  simulationTimer = setInterval(() => {
+    renderSimulationFrame(currentTimeline[simulationIndex]);
+
+    simulationIndex++;
+
+    if (simulationIndex >= currentTimeline.length) {
+      simulationIndex = currentTimeline.length - 1;
+      pauseSimulation();
+    }
+  }, 700);
+}
+
+function pauseSimulation() {
+  if (simulationTimer) {
+    clearInterval(simulationTimer);
+    simulationTimer = null;
+  }
+}
+
+function resetSimulation() {
+  pauseSimulation();
+  simulationIndex = 0;
+
+  if (currentTimeline && currentTimeline.length > 0) {
+    renderSimulationFrame(currentTimeline[0]);
+  } else {
+    document.getElementById("simulationMonth").textContent = `${t("month")} 0`;
+    document.getElementById("simulationMetrics").innerHTML = "";
+    document.getElementById("simulationMeaning").innerHTML = t("noTimeline");
+  }
+}
+
+
+applyTranslations();
+const langSelector = document.getElementById("languageSelect");
+if (langSelector) langSelector.value = currentLanguage;
+
+
+loadPatients().catch(error => {
+  console.error(error);
+  document.body.innerHTML = `<pre style="color:red;padding:20px;">${error}</pre>`;
 });
 </script>
-
-
-
-</body></html>
+</body>
+</html>

@@ -1,0 +1,32 @@
+{
+  "created_at": "2026-06-07T14:01:16.494298",
+  "model_version": "EGFR_Global_TrustedEvidenceFusion_v1_15B_civic_label_citation_repair",
+  "patients": 75,
+  "previous_global_prototype_score_0_10": 7.73,
+  "technical_functionality_score_0_10": 8.5,
+  "internal_consistency_score_0_10": 9.0,
+  "scientific_traceability_score_0_10": 8.63,
+  "clinical_readiness_score_0_10": 5.2,
+  "global_prototype_score_0_10": 8.0,
+  "average_patient_public_trust_score_0_1": 0.9329,
+  "patient_status_distribution": {
+    "HIGH_TRUST_PUBLIC_VALIDATION_SUPPORTED_AFTER_15B": 62,
+    "PARTIAL_PUBLIC_VALIDATION_SUPPORTED_AFTER_15B": 13
+  },
+  "civic_rows_retrieved": 266,
+  "civic_rule_exact_matches": 8,
+  "openfda_rule_exact_matches": 10,
+  "pubmed_rule_context_matches": 10,
+  "high_trust_sources_used": [
+    "CIViC accepted evidence release/API when available",
+    "openFDA drug labels",
+    "PubMed E-utilities citation context",
+    "ClinicalTrials.gov trial context",
+    "cBioPortal public genomic cohort context"
+  ],
+  "excluded_or_pending": {
+    "OncoKB": "Full therapeutic validation pending approved production API token.",
+    "DGIdb": "Excluded from high-trust scoring because interaction support is not clinical actionability."
+  },
+  "interpretation": "15B improves rule-level traceability using public high-trust evidence. It still does not establish clinical outcome prediction accuracy. Final clinical validation requires real response/PFS/OS labels, external cohorts, and expert review."
+}

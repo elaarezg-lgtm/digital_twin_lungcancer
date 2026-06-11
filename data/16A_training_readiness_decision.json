@@ -1,0 +1,12 @@
+{
+  "created_at": "2026-06-07T22:51:10.758505",
+  "patients_in_seed_table": 75,
+  "real_treatment_received_count": 0,
+  "real_response_label_count": 0,
+  "real_pfs_label_count": 0,
+  "real_os_label_count": 34,
+  "can_train_response_model_now": false,
+  "can_train_survival_model_now": false,
+  "recommended_next_action": "Do not train a clinical prediction model yet. Build outcome-labeled dataset first from GENIE/BPC, cBioPortal studies with treatment/outcomes, institutional retrospective data, or curated literature tables.",
+  "scientific_decision": "Current data supports evidence-ranked research prototype, not trained hospital-grade outcome prediction."
+}

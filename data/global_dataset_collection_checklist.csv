@@ -1,0 +1,9 @@
+task_id,source,action,method,output_folder,status,notes
+T01,TCGA-LUAD / GDC,"Download clinical, mutation, CNA, RNA-seq, methylation files",GDC portal/API or cBioPortal derived files,/content/drive/MyDrive/desktop_app/data/raw/tcga_luad,pending,Use harmonized GRCh38 GDC data where possible.
+T02,cBioPortal TCGA-LUAD,Download/stage clinical and mutation files,cBioPortal API or study download,/content/drive/MyDrive/desktop_app/data/raw/cbioportal_luad,metadata checked,Use for quick baseline curation.
+T03,CPTAC-LUAD,Collect proteomics/phosphoproteomics tables,PDC/CPTAC/cBioPortal/public supplements,/content/drive/MyDrive/desktop_app/data/raw/cptac_luad,pending,Critical for dynamic pathway map.
+T04,AACR GENIE public,Access public release after accepting terms,Synapse/cBioPortal/manual,/content/drive/MyDrive/desktop_app/data/raw/genie_nsclc,manual access required,Do not bypass Synapse/GENIE terms.
+T05,AACR GENIE BPC NSCLC,Access BPC NSCLC if available,Official GENIE BPC access,/content/drive/MyDrive/desktop_app/data/raw/genie_nsclc,manual access required,Best real-world NSCLC validation dataset.
+T06,CIViC,Download/collect EGFR/NSCLC evidence,CIViC API/download/manual,/content/drive/MyDrive/desktop_app/data/raw/civic,pending,Open evidence knowledgebase.
+T07,CGI,Collect EGFR/NSCLC biomarkers and oncogenicity support,CGI resources/manual,/content/drive/MyDrive/desktop_app/data/raw/cgi,pending/manual,Use for actionability/oncogenicity support.
+T08,DGIdb,Collect drug-gene interactions for EGFR/MET/KRAS/PIK3CA,DGIdb API/download/manual,/content/drive/MyDrive/desktop_app/data/raw/dgidb,pending,"Supportive only, not clinical evidence alone."

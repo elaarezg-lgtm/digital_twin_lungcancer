@@ -1,0 +1,8 @@
+output,path,exists,size,purpose
+dashboard_simulation_patients_global.json,/content/drive/MyDrive/desktop_app/data/dashboard_simulation_patients_global.json,True,1231507,Global trusted dashboard dataset.
+dashboard_simulation_patients_verified.json,/content/drive/MyDrive/desktop_app/data/dashboard_simulation_patients_verified.json,True,1231507,Standard API dataset filename.
+dashboard_config.json,/content/drive/MyDrive/desktop_app/data/dashboard_config.json,True,1519,Dashboard reliability and policy configuration.
+api.py,/content/drive/MyDrive/desktop_app/backend/api.py,True,9417,Backend API serving global dashboard data.
+validation_report,/content/drive/MyDrive/desktop_app/data/audit/13_dashboard_global_validation_report.csv,True,14022,Patient-level JSON validation.
+safety_audit,/content/drive/MyDrive/desktop_app/data/audit/13_dashboard_global_safety_audit.csv,True,467,Dashboard safety audit.
+integration_instructions,/content/drive/MyDrive/desktop_app/data/reports/13_dashboard_global_integration_instructions.txt,True,1770,Exact Windows steps.
