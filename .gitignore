@@ -41,15 +41,19 @@ UserSettings/
 .env
 .venv/
 venv/
-# Temporary repair/debug scripts
 EMERGENCY_RESTORE_FINAL_DASHBOARD.py
 FIX_DASHBOARD_SCROLL_VIDEO_LAYOUT.py
 PATCH_15B_EVIDENCE_LAYER.py
-UNDO_15B_EVIDENCE_PATCH.py
-fix_api_dashboard_now.py
-restore_MY_FINAL_DASHBOARD.py
 README_RESTORE.txt
 RUN_FINAL_DASHBOARD.bat
+UNDO_15B_EVIDENCE_PATCH.py
+dashboard_simulation_patients_verified.json
+fix_api_dashboard_now.py
+restore_MY_FINAL_DASHBOARD.py
 test_repo/
 python
-dashboard_simulation_patients_verified.json
+BACKUP_*/
+RESTORE_*/
+restore_backup_old_dashboard/
+*.bak
+*.backup
